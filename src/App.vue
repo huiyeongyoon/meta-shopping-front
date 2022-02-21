@@ -1,32 +1,43 @@
 <template>
+  <!-- 1번 template 생성 -->
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <Header />
+    <Input />
+    <List />
+    <Footer />
   </div>
 </template>
 
+<script>
+// 2번 문서 만든후 import 해오기
+import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
+
+export default {
+  // 3번 컴포넌트에 추가하기
+  components: {
+    Header,
+    Footer
+  }
+}
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+body {
   text-align: center;
-  color: #2c3e50;
+  background-color: #f6f6f6;
 }
 
-#nav {
-  padding: 30px;
+input {
+  border-style: groove;
+  width: 200px;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+button {
+  border-style: groove;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+.shadow {
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.03);
 }
 </style>

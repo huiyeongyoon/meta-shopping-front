@@ -2,20 +2,20 @@
   <!-- 1번 template 생성 -->
   <div id="app">
     <Header />
-    <Footer />
+    <Main />
   </div>
 </template>
 
 <script>
 // 2번 문서 만든후 import 해오기
 import Header from './components/Header.vue'
-import Footer from './components/Footer.vue'
+import Main from './components/main/Main.vue'
 
 export default {
   // 3번 컴포넌트에 추가하기
   components: {
     Header,
-    Footer
+    Main
   }
 }
 </script>

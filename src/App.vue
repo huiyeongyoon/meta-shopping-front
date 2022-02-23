@@ -1,21 +1,24 @@
 <template>
-  <!-- 1번 template 생성 -->
-  <div id="app">
-    <Header />
-    <Footer />
+  <div>
+    <app-header />
+    <router-view />
+    <app-footer />
   </div>
 </template>
 
 <script>
-// 2번 문서 만든후 import 해오기
-import Header from './components/Header.vue'
-import Footer from './components/Footer.vue'
 
 export default {
   // 3번 컴포넌트에 추가하기
   components: {
     Header,
     Footer
+import Header from './components/common/Header.vue'
+import Footer from './components/common/Footer.vue'
+export default {
+  components: {
+    'app-header': Header,
+    'app-footer': Footer
   }
 }
 </script>

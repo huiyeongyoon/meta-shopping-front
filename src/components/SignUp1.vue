@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Header />
     <br />
     <h1 class="subject">메타 쇼핑 회원가입 페이지 입니다.</h1>
     <br />
@@ -12,27 +11,40 @@
         <b-col></b-col>
         <b-col>
           <b-button-group class="button">
-            <b-button>일반 구매자</b-butto
-            n>
-            <b-button>판매자</b-button>
-            <b-button>관리자</b-button>
+            <b-button @click="$router.push('/signup2')">일반 구매자</b-button>
+            <b-button @click="$router.push('/signup2')">판매자</b-button>
+            <b-button @click="$router.push('/signup2')">관리자</b-button>
           </b-button-group>
         </b-col>
         <b-col></b-col>
       </b-row>
     </b-container>
-    <Footer id="footer" />
+    <br />
+    <br />
+    <br />
   </div>
 </template>
 
 <script>
-import Header from '../common/Header.vue'
-import Footer from '../common/Footer.vue'
 export default {
-  components: {
-    Header,
-    Footer
-  }
+  data() {
+    return {
+      userRole: {
+        options: [
+          { value: 'buyer', text: '일반 구매자' },
+          { value: 'seller', text: '판매자' },
+          { value: 'admin', text: '관리자' }
+        ]
+      }
+    }
+  },
+  computed: {
+    sendRole() {
+      return this.store.getters.UserList
+    }
+  },
+  watch: {},
+  methods: {}
 }
 </script>
 

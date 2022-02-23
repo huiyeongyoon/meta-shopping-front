@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Header />
     <br />
     <h1 class="subject">메타 쇼핑 회원가입 페이지 입니다.</h1>
     <br />
@@ -27,37 +26,32 @@
       <b-form-input id="createdAt" v-model="user.createdAt" disabled></b-form-input>
     </b-form-group>
     <br />
-    <Footer id="footer" />
   </div>
 </template>
 
 <script>
-import Header from '../common/Header.vue'
-import Footer from '../common/Footer.vue'
 export default {
-  components: {
-    Header,
-    Footer
-  },
   data() {
     return {
       user: {
-        id: null,
-        name: null,
         userid: null,
         password: null,
-        role: null,
-        email: null,
+        name: null,
         phone: null,
+        email: null,
+        profile: null,
+        nickname: null,
+        email_check: null,
+        grade: null,
         updatedPwDate: null,
         createdAt: null
       },
       userRole: {
-        default: 'member', // 기본값
+        default: 'buyer', // 기본값
         options: [
-          { value: 'leader', text: '팀장' },
-          { value: 'member', text: '팀원' },
-          { value: 'member', text: '팀원' }
+          { value: 'buyer', text: '일반 구매자' },
+          { value: 'seller', text: '판매자' },
+          { value: 'admin', text: '관리자' }
         ]
       }
     }

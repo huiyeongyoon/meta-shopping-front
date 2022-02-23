@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import store from '../store'
+// import store from '../store'
 // import jwtDecode from 'jwt-decode'
 
 Vue.use(VueRouter)
@@ -17,11 +17,11 @@ const routes = [
       },
       {
         path: '/signup1',
-        component: () => import('../components/signup/SignUp1.vue')
+        component: () => import('../components/SignUp1.vue')
       },
       {
         path: '/signup2',
-        component: () => import('../components/signup/SignUp2.vue')
+        component: () => import('../components/SignUp2.vue')
       }
     ]
   },

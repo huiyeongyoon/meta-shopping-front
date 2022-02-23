@@ -7,14 +7,11 @@
 </template>
 
 <script>
-
-export default {
-  // 3번 컴포넌트에 추가하기
-  components: {
-    Header,
-    Footer
-import Header from './components/common/Header.vue'
+import Header from './components/Header.vue'
+import Main from './components/main/Main.vue'
 import Footer from './components/common/Footer.vue'
+
+
 export default {
   components: {
     'app-header': Header,

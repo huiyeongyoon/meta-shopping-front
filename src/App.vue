@@ -8,9 +8,7 @@
 
 <script>
 import Header from './components/Header.vue'
-import Main from './components/main/Main.vue'
 import Footer from './components/common/Footer.vue'
-
 
 export default {
   components: {

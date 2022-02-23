@@ -15,11 +15,11 @@ const routes = [
   {
     path: '/signup2',
     component: () => import('../components/signup/SignUp2.vue')
-  },
-  {
-    path: '*',
-    component: () => import('../components/NotFound.vue')
   }
+  // {
+  //   path: '*',
+  //   component: () => import('../components/NotFound.vue')
+  // }
 ]
 
 const router = new VueRouter({

@@ -46,7 +46,7 @@
         <div class="header__right">
           <div class="header__right__auth">
             <a href="#">Login</a>
-            <a href="#">Register</a>
+            <a href="/signup1">Register</a>
           </div>
           <ul class="header__right__widget">
             <li>

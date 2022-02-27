@@ -5,8 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "build:sass": "sass ./src/assets/sass/style.scss:dist/css"
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.0.0",
@@ -14,11 +13,6 @@
     "@fortawesome/free-regular-svg-icons": "^6.0.0",
     "@fortawesome/free-solid-svg-icons": "^6.0.0",
     "@fortawesome/vue-fontawesome": "^2.0.6",
-    "bootstrap": "^4.5.3",
-    "bootstrap-vue": "^2.21.2",
-    "core-js": "^3.6.5",
-    "vue": "^2.6.11",
-    "vue-router": "^3.2.0",
     "axios": "^0.26.0",
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.21.2",
@@ -40,7 +34,8 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^6.2.2",
     "prettier": "^2.2.1",
-    "sass": "^1.49.8",
+    "sass": "^1.49.9",
+    "sass-loader": "^7.3.1",
     "vue-template-compiler": "^2.6.11"
   }
 }

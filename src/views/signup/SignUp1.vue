@@ -15,15 +15,11 @@
             <!--이용약관 모달 -->
             <Inform />
             <b-button @click="selectRole(2)">관리자</b-button>
-            <b-button @click="$router.push('/signup2')">일반 구매자</b-button>
-            <b-button @click="$router.push('/signup2')">판매자</b-button>
-            <b-button @click="$router.push('/signup2')">관리자</b-button>
           </b-button-group>
         </b-col>
         <b-col></b-col>
       </b-row>
     </b-container>
-
     <br />
     <br />
     <br />
@@ -32,28 +28,10 @@
 
 <script>
 import Inform from './inform.vue'
-
 export default {
-components: {
+  components: {
     Inform
   },
-  data() {
-    return {
-      userRole: {
-        options: [
-          { value: 'buyer', text: '일반 구매자' },
-          { value: 'seller', text: '판매자' },
-          { value: 'admin', text: '관리자' }
-        ]
-      }
-    }
-  },
-  computed: {
-    sendRole() {
-      return this.store.getters.UserList
-    }
-  },
-  watch: {},
   methods: {
     selectRole(params) {
       this.$bvModal.show('signup-inform')
@@ -61,15 +39,10 @@ components: {
       this.$store.dispatch('actUserRole', params)
     }
   }
-  methods: {}
 }
 </script>
 
 <style scoped>
-/* #footer {
-  position: fixed;
-  bottom: 0;
-} */
 .subject {
   text-align: center;
 }

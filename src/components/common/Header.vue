@@ -10,7 +10,7 @@
       <div class="col-xl-6 col-lg-7">
         <nav class="header__menu">
           <ul>
-            <li class="active"><a href="#">Home</a></li>
+            <li class="active"><a href="/">Home</a></li>
             <li>
               <a href="#">Women’s</a>
               <ul class="dropdown">
@@ -46,7 +46,7 @@
         <div class="header__right">
           <div class="header__right__auth">
             <a href="#">Login</a>
-            <a href="#">Register</a>
+            <a href="/signup1">Register</a>
           </div>
           <ul class="header__right__widget">
             <li>

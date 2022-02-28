@@ -17,9 +17,13 @@ const routes = [
     component: () => import('../views/signup/SignUp2.vue')
   },
   {
+    path: '*',
+    component: () => import('../components/NotFound.vue')
+  },
+  {
     path: '/productDetail',
     component: () => import('../views/product/productDetail.vue')
-  }
+  },
 ]
 
 const router = new VueRouter({

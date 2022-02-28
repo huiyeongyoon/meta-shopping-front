@@ -6,15 +6,15 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    component: () => import('../components/main/main.vue')
+    component: () => import('../views/main/main.vue')
   },
   {
     path: '/signup1',
-    component: () => import('../components/signup/SignUp1.vue')
+    component: () => import('../views/signup/SignUp1.vue')
   },
   {
     path: '/signup2',
-    component: () => import('../components/signup/SignUp2.vue')
+    component: () => import('../views/signup/SignUp2.vue')
   },
   {
     path: '*',

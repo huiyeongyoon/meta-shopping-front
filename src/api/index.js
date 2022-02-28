@@ -8,7 +8,7 @@ const config = {
 
 // 2. api 함수들 정리
 function fetchProductList() {
-  return axios.get(`${config.baseUrl}/product`)
+  return axios.get(`${config.baseUrl}/products`)
 }
 
 export { fetchProductList }

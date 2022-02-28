@@ -23,7 +23,7 @@ const routes = [
   {
     path: '/productDetail',
     component: () => import('../views/product/productDetail.vue')
-  },
+  }
 ]
 
 const router = new VueRouter({

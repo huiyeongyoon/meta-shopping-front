@@ -67,7 +67,6 @@ export default {
   data() {
     return {
       user: {
-
         userId: null,
         userPassword: null,
         userName: null,
@@ -85,7 +84,7 @@ export default {
         createdAt: null
       },
       userRole: {
-      options: [
+        options: [
           { value: 1, text: '일반 회원' },
           { value: 2, text: '관리자' }
         ]
@@ -133,23 +132,11 @@ export default {
         }
       }).open()
     }
-        default: 'buyer', // 기본값
-        options: [
-          { value: 'buyer', text: '일반 구매자' },
-          { value: 'seller', text: '판매자' },
-          { value: 'admin', text: '관리자' }
-        ]
-      }
-    }
   }
 }
 </script>
 
 <style scoped>
-/* #footer {
-  position: fixed;
-  bottom: 0;
-} */
 .subject {
   text-align: center;
 }

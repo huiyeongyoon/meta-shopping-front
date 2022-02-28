@@ -33,8 +33,10 @@ export default {
       bodyTextVariant: 'dark',
       footerBgVariant: 'light',
       footerTextVariant: 'dark',
-      userid: null,
-      userpassword: null
+      user: {
+        userId: null,
+        userPassword: null
+      }
     }
   },
   computed: {
@@ -86,13 +88,11 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.$store.dispatch('authLogin', { userid: this.userid, password: this.password })
+      console.log(this.user)
+      this.$store.dispatch('authLogin', this.user)
     }
   }
 }
 </script>
 
-<style lang="scss" scoped>
-$white: #fff;
-$blue: rgb(0, 0, 255);
-</style>
+<style lang="scss" scoped></style>

@@ -1,16 +1,22 @@
 const { VUE_APP_SERVER } = process.env
-
 module.exports = {
+  css: {
+    loaderOptions: {
+      scss: {
+        additionalData: `@import "@/assets/sass/style.scss"; `
+      }
+    }
+  },
   devServer: {
-    //CORS 해결하기위한 프록시
     proxy: {
-      '/serverApi': {
-        target: VUE_APP_SERVER,
+      '/api': {
+        target: 'http://localhost:3000',
         changeOrigin: true,
         pathRewrite: {
-          '^/serverApi': '' //없애준다
+          '^/api': ''
         }
       }
     }
-  }
+  },
+  outputDir: '../meta-shopping-server/team_first_project01/public'
 }

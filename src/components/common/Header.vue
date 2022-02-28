@@ -78,15 +78,19 @@
 </template>
 
 <script>
-import Login from '../login/login.vue'
+import Login from '../../views/login/login.vue'
 export default {
   components: {
     Login
   },
+  data() {
+    return {
+      userName: null
+    }
+  },
   methods: {
     userLogin() {
       this.$bvModal.show('login-inform')
-      console.log('user login')
     }
   }
 }

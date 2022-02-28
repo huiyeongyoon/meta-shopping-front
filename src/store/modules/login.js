@@ -68,13 +68,14 @@ export default {
       /* RestApi 호출 */
 
       api
-        .post('/serverApi/auths/token', payload)
+        .post('/api/auths/token', payload)
         .then(response => {
           const token = response.headers.token
           const decodedToken = jwtDecode(token)
 
           // 정상인 경우 처리
           context.commit('setLoading', false)
+          console.log('로그인 js : ', payload)
           context.commit('setTokenUser', decodedToken)
         })
         .catch(error => {
@@ -100,7 +101,7 @@ export default {
       // api 결과와 관계없이 로컬에서는 로그아웃 처리 함
 
       try {
-        await api.delete('/serverApi/auths/token') // await를 걸지 않으면 토큰삭제 후 전송될 수 있음
+        await api.delete('/api/auths/token') // await를 걸지 않으면 토큰삭제 후 전송될 수 있음
         context.commit('setLogout') // 로그아웃 처리
         window.localStorage.removeItem('token') // 토큰 삭제
       } catch (err) {

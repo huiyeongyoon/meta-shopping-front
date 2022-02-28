@@ -9,7 +9,7 @@ module.exports = {
   devServer: {
     proxy: {
       '/api': {
-        target: 'http://localhost:3000/api',
+        target: 'http://localhost:3000',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''
@@ -17,5 +17,5 @@ module.exports = {
       }
     }
   },
-  outputDir: '../meta-shopping-server/public'
+  outputDir: '../meta-shopping-server/team_first_project01/public'
 }

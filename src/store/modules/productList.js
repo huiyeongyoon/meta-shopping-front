@@ -40,7 +40,6 @@ const actions = {
   }
 }
 
-// 여기 접근을 못해
 // const mutations = {
 //   addOneItem(state, todoItem) {
 //     const obj = { completed: false, item: todoItem }

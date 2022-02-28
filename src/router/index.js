@@ -19,7 +19,11 @@ const routes = [
   {
     path: '*',
     component: () => import('../components/NotFound.vue')
-  }
+  },
+  {
+    path: '/productDetail',
+    component: () => import('../views/product/productDetail.vue')
+  },
 ]
 
 const router = new VueRouter({

@@ -10,7 +10,7 @@
       <div class="col-xl-6 col-lg-7">
         <nav class="header__menu">
           <ul>
-            <li class="active"><a href="#">Home</a></li>
+            <li class="active"><a href="/">Home</a></li>
             <li>
               <a href="#">Women’s</a>
               <ul class="dropdown">
@@ -45,7 +45,7 @@
       <div class="col-lg-3">
         <div class="header__right">
           <div class="header__right__auth">
-            <a href="#">Login</a>
+            <a @click="userLogin">Login</a>
             <a href="/signup1">Register</a>
           </div>
           <ul class="header__right__widget">
@@ -71,12 +71,25 @@
     <div class="canvas__open">
       <i class="fa fa-bars"></i>
     </div>
+    <!-- 로그인 모달 -->
+    <Login />
   </header>
   <!-- Header Section End -->
 </template>
 
 <script>
-export default {}
+import Login from '../login/login.vue'
+export default {
+  components: {
+    Login
+  },
+  methods: {
+    userLogin() {
+      this.$bvModal.show('login-inform')
+      console.log('user login')
+    }
+  }
+}
 </script>
 
 <style scoped>

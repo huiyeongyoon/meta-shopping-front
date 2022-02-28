@@ -8,14 +8,14 @@ const routes = [
     path: '/',
     component: () => import('../components/main/main.vue')
   },
-  {
-    path: '/signup1',
-    component: () => import('../components/signup/SignUp1.vue')
-  },
-  {
-    path: '/signup2',
-    component: () => import('../components/signup/SignUp2.vue')
-  },
+  // {
+  //   path: '/signup1',
+  //   component: () => import('../components/signup/SignUp1.vue')
+  // },
+  // {
+  //   path: '/signup2',
+  //   component: () => import('../components/signup/SignUp2.vue')
+  // },
   {
     path: '*',
     component: () => import('../components/NotFound.vue')

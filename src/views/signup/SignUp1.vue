@@ -13,7 +13,9 @@
           <b-button-group class="button">
             <b-button @click="selectRole(1)">일반 회원</b-button>
             <!--이용약관 모달 -->
-            <Inform />
+            <TermsOfUse />
+            <!--관리자 확인 모달 -->
+            <AdminPass />
             <b-button @click="selectRole(2)">관리자</b-button>
           </b-button-group>
         </b-col>
@@ -27,14 +29,20 @@
 </template>
 
 <script>
-import Inform from './inform.vue'
+import AdminPass from './AdminPass.vue'
+import TermsOfUse from './TermsOfUse.vue'
 export default {
   components: {
-    Inform
+    TermsOfUse,
+    AdminPass
   },
   methods: {
     selectRole(params) {
-      this.$bvModal.show('signup-inform')
+      if (params === 1) {
+        this.$bvModal.show('signup-inform')
+      } else {
+        this.$bvModal.show('admin-inform')
+      }
       console.log('sign1 role: ', params)
       this.$store.dispatch('actUserRole', params)
     }

@@ -84,7 +84,7 @@
         <div class="row property__gallery">
           <div class="col-lg-3 col-md-4 col-sm-6 mix women">
             <div class="product__item">
-              <div v-for="product in this.storedProdutList" :key="product.item" class="product__item">
+              <div v-for="product in storedProdutList" :key="product.item" class="product__item">
                 <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
                   <div class="label new">New</div>
                   <ul class="product__hover">
@@ -128,13 +128,13 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+//import { mapGetters } from 'vuex'
 export default {
-  created() {
-    this.$store.dispatch('FETCH_PRODUCTLIST')
-  },
   computed: {
-    ...mapGetters(['storedProdutList'])
+    // ...mapGetters(['storedProdutList'])
+  },
+  created() {
+    // this.$store.dispatch('FETCH_PRODUCTLIST')
   }
 }
 </script>

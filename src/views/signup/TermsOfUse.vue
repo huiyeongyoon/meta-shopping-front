@@ -56,7 +56,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-$white: #fff;
-$blue: rgb(0, 0, 255);
-</style>
+<style lang="scss" scoped></style>

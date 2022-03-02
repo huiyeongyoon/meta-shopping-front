@@ -131,10 +131,10 @@
 //import { mapGetters } from 'vuex'
 export default {
   computed: {
-    // ...mapGetters(['storedProdutList'])
+    ...mapGetters(['storedProdutList'])
   },
   created() {
-    // this.$store.dispatch('FETCH_PRODUCTLIST')
+    this.$store.dispatch('FETCH_PRODUCTLIST')
   }
 }
 </script>

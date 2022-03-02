@@ -46,11 +46,11 @@
         <div class="header__right">
           <div v-if="!userName" class="header__right__auth">
             <a @click="userLogin">Login</a>
-            <a href="/signup1">Register</a>
+            <a id="1" @click="$router.push('/signup1')">Register</a>
           </div>
           <div v-else-if="userName" class="header__right__auth">
-            <a>{{ userName }}님 환영합니다.</a>
-            <a @click="userLogout">Logout</a>
+            <a>{{ userNickname }}({{ userName }})님 환영합니다.</a>
+            <a id="2" @click="userLogout">Logout</a>
           </div>
           <ul class="header__right__widget">
             <li>
@@ -89,17 +89,19 @@ export default {
   },
   data() {
     return {
-      userName: null
+      userName: localStorage.getItem('userName'),
+      userNickname: localStorage.getItem('userNickname')
     }
   },
   computed: {
-    setUserName() {
-      return this.$store.getters.TokenUser.userName
+    setUserInfo() {
+      return this.$store.getters.TokenUser
     }
   },
   watch: {
-    setUserName(value) {
-      this.userName = value
+    setUserInfo(value) {
+      this.userName = value.userName
+      this.userNickname = value.userNickname
     }
   },
   methods: {
@@ -113,6 +115,7 @@ export default {
         variant: 'success',
         solid: true
       })
+      this.userName = null
     }
   }
 }

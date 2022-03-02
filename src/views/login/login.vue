@@ -75,7 +75,7 @@ export default {
   },
   created() {
     // 이미 토큰을 가지고 있는 경우 처리를 위한 로직
-    const token = window.localStorage.getItem('token')
+    const token = localStorage.getItem('token')
     if (token) {
       const decodedToken = jwtDecode(token)
       const today = new Date()
@@ -87,7 +87,7 @@ export default {
         this.$router.push('/') // 메인 페이지 이동
       } else {
         // 토큰이 만료된 경우
-        window.localStorage.removeItem('token') // 토큰 삭제
+        localStorage.removeItem('token') // 토큰 삭제
       }
     }
   },

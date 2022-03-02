@@ -19,8 +19,20 @@ import jwtDecode from 'jwt-decode'
 const stateInit = {
   TokenUser: {
     userid: null,
-    name: null,
-    role: null
+    userPassword: null,
+    userName: null,
+    userPhone: null,
+    userEmail: null,
+    userProfile: null,
+    userNickname: null,
+    userRole: null,
+    emailCheck: null,
+    userGrade: null,
+    userAddress1: null,
+    userAddress2: null,
+    userAddress3: null,
+    updatedPwDate: null,
+    createdAt: null
   }
 }
 
@@ -64,6 +76,7 @@ export default {
       // 상태값 초기화
       context.commit('clearError')
       context.commit('setLoading', true)
+      console.log('로그인 액션 ')
 
       /* RestApi 호출 */
 
@@ -76,12 +89,15 @@ export default {
           // 정상인 경우 처리
           context.commit('setLoading', false)
           console.log('로그인 js : ', payload)
+          console.log('decodedToken ', decodedToken)
           context.commit('setTokenUser', decodedToken)
+          console.log('TokenUser ', this.getters.TokenUser)
         })
         .catch(error => {
           // 에러인 경우 처리
           context.commit('setLoading', false)
           context.commit('setError', error)
+          console.log('error')
         })
     },
     async authLogout(context) {

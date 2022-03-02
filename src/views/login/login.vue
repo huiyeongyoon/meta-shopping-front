@@ -54,7 +54,12 @@ export default {
     tokenUser(value) {
       if (value && value.id && value.id > 0) {
         // 로그인이 완료된 상황
-        this.$router.push('/') // 메인 페이지 이동
+        // this.$router.push('/') // 메인 페이지 이동
+        this.$bvToast.toast('로그인 되었습니다.', {
+          title: '로그인 성공',
+          variant: 'success',
+          solid: true
+        })
       }
     },
     error(errValue) {
@@ -88,8 +93,10 @@ export default {
   },
   methods: {
     onSubmit() {
-      console.log(this.user)
       this.$store.dispatch('authLogin', this.user)
+      console.log('logincheck : ', this.$store.getters.TokenUser)
+      this.user.userId = null
+      this.user.userPassword = null
     }
   }
 }

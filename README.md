@@ -1,5 +1,4 @@
-
-필요 설치 npm 파일 <br>
+요 설치 npm 파일 <br>
 npm install <br>
 npm install -D sass <br>
 npm install dotenv --save <br>

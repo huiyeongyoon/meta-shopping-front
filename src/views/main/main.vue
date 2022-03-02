@@ -123,6 +123,7 @@
       </div>
     </section>
     <!-- Product Section End -->
+
     <!-- 왜 key에 item이 들어갈까? -->
   </div>
 </template>

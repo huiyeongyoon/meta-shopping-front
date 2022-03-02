@@ -9,6 +9,18 @@ const routes = [
     component: () => import('../views/main/main.vue')
   },
   {
+    path: '/signup1',
+    component: () => import('../views/signup/SignUp1.vue')
+  },
+  {
+    path: '/signup2',
+    component: () => import('../views/signup/SignUp2.vue')
+  },
+  {
+    path: '/productDetail',
+    component: () => import('../views/product/productDetail.vue')
+  },
+  {
     path: '*',
     component: () => import('../components/NotFound.vue')
   }

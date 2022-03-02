@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
 import store from './store/store'
+import axios from 'axios'
 import router from './router'
+
+Vue.prototype.$http = axios
 
 // bootstrap
 import { BootstrapVue } from 'bootstrap-vue'
@@ -10,7 +13,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue)
 
 import '@fortawesome/fontawesome-free/js/all.js'
-Vue.config.productionTip = false
+Vue.config.productionTip = true
 
 new Vue({
   router,

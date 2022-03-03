@@ -56,8 +56,4 @@ export default {
 }
 </script>
 
-<<<<<<< Updated upstream:src/views/signup/TermsOfUse.vue
 <style lang="scss" scoped></style>
-=======
-<style></style>
->>>>>>> Stashed changes:src/views/signup/inform.vue

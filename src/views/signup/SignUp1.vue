@@ -46,12 +46,7 @@ export default {
       console.log('sign1 role: ', params)
       this.$store.dispatch('actUserRole', params)
     }
-<<<<<<< Updated upstream
   }
-=======
-  },
-  methods: {}
->>>>>>> Stashed changes
 }
 </script>
 

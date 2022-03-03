@@ -82,7 +82,6 @@
 </template>
 
 <script>
-<<<<<<< Updated upstream
 import Login from '../../views/login/login.vue'
 export default {
   components: {
@@ -117,15 +116,12 @@ export default {
         solid: true
       })
       this.userName = null
-=======
-export default {
-  methods: {
+    },
     menCategory() {
       console.log('men')
     },
     womenCategory() {
       console.log('women')
->>>>>>> Stashed changes
     }
   }
 }

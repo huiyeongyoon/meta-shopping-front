@@ -312,7 +312,7 @@ export default {
     this.$store.dispatch('FETCH_COUNT')
   },
   created() {
-    this.$store.dispatch('FETCH_PRODUCTLIST')
+    this.$store.dispatch('FETCH_PRODUCT_LIST')
   },
   methods: {
     // ...mapActions(['FETCH_PRODUCT_LIST']),

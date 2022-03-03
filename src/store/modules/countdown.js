@@ -8,7 +8,6 @@ const state = {
 
 const getters = {
   storedCountdown(state) {
-    console.log(state.inputTime)
     let { days, hours, minutes, seconds } = state
     return { days, hours, minutes, seconds }
   }

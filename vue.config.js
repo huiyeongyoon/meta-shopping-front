@@ -1,3 +1,5 @@
+const { VUE_APP_SERVER } = process.env
+
 module.exports = {
   css: {
     loaderOptions: {
@@ -9,7 +11,7 @@ module.exports = {
   devServer: {
     proxy: {
       '/api': {
-        target: 'http://localhost:3000',
+        target: VUE_APP_SERVER,
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''

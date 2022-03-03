@@ -82,16 +82,14 @@
           </div>
         </div>
         <div class="row property__gallery">
-          <div class="col-lg-3 col-md-4 col-sm-6 mix women">
-            <div v-for="product in storedProdutList" :key="product.item" class="product__item">
-              <div class="product__item__pic set-bg">
+          <div v-for="product in storedProdutList" :key="product.item" class="col-lg-3 col-md-4 col-sm-6 mix women">
+            <div class="product__item">
+              <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
                 <div class="label new">New</div>
+                <img :src="`${localhostNumber}/product-1-1646291945804.jpg`" />
                 <ul class="product__hover">
                   <li>
                     <a href="img/product/product-1.jpg" class="image-popup"><span class="arrow_expand"></span></a>
-                    <a href="../../../img/product/product-1.jpg" class="image-popup"
-                      ><span class="arrow_expand"></span
-                    ></a>
                   </li>
                   <li>
                     <a href="#"><span class="icon_heart_alt"></span></a>
@@ -103,7 +101,7 @@
               </div>
               <div class="product__item__text">
                 <h6>
-                  <a href="#">{{ product.productName }}</a>
+                  <a href="#">{{ product }}</a>
                 </h6>
                 {{ product.productDesc }}
                 <div class="rating">
@@ -280,13 +278,13 @@
 
 <script>
 // getter만 사용하는 이유는??
-import { mapGetters, mapActions } from 'vuex'
-import Countdown from '../../store/modules/countdown'
-
+import { mapGetters } from 'vuex'
+const { VUE_APP_SERVER } = process.env
+console.log(VUE_APP_SERVER)
 export default {
   data() {
     return {
-      Countdown
+      localhostNumber: VUE_APP_SERVER
     }
   },
   computed: {
@@ -306,18 +304,14 @@ export default {
       return this.storedCountdown.seconds
     }
   },
-  mounted() {
+  created() {
     // this.FETCH_PRODUCT_LIST()
     this.$store.dispatch('FETCH_PRODUCT_LIST')
     this.$store.dispatch('FETCH_COUNT')
   },
-  created() {
-    this.$store.dispatch('FETCH_PRODUCT_LIST')
-  },
   methods: {
-    // ...mapActions(['FETCH_PRODUCT_LIST']),
     allCategory() {
-      console.log('all')
+      console.log(this.storedProdutList)
     },
     menCategory() {
       console.log('men')

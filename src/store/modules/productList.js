@@ -1,10 +1,9 @@
-import { fetchProductList } from '../../api/index.js'
+import { fetchProductLists } from '../../api/productLists'
 
 const state = {
   productLists: []
 }
 
-// 정체
 const getters = {
   storedProdutList(state) {
     return state.productLists
@@ -29,7 +28,7 @@ const actions = {
   //     })
   // }
   FETCH_PRODUCT_LIST({ commit }) {
-    fetchProductList()
+    fetchProductLists()
       .then(({ data }) => {
         commit('SET_PRODUCT_LIST', data.rows)
       })

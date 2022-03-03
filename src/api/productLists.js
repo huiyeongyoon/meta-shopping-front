@@ -1,7 +1,8 @@
 import axios from 'axios'
+const { VUE_APP_SERVER } = process.env
 
 const config = {
-  baseUrl: 'http://localhost:3000'
+  baseUrl: VUE_APP_SERVER
 }
 
 function fetchProductLists() {

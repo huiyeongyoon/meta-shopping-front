@@ -1,13 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import User from './modules/user'
-import productList from './modules/productList'
+import ProductList from './modules/productList'
+import Countdown from './modules/countdown'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
     User,
-    productList
+    ProductList,
+    Countdown
   }
 })

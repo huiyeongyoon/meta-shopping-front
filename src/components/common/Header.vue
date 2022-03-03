@@ -10,8 +10,8 @@
       <div class="col-xl-6 col-lg-7">
         <nav class="header__menu">
           <ul>
-            <li class="active"><a href="/">Home</a></li>
-            <li>
+            <li><a href="/">Home</a></li>
+            <li @click="womenCategory">
               <a href="#">Women’s</a>
               <ul class="dropdown">
                 <li><a href="#">Product Details</a></li>
@@ -20,7 +20,7 @@
                 <li><a href="#">Blog Details</a></li>
               </ul>
             </li>
-            <li>
+            <li @click="menCategory">
               <a href="#">Men’s</a>
               <ul class="dropdown">
                 <li><a href="#">Product Details</a></li>
@@ -82,6 +82,7 @@
 </template>
 
 <script>
+<<<<<<< Updated upstream
 import Login from '../../views/login/login.vue'
 export default {
   components: {
@@ -116,6 +117,15 @@ export default {
         solid: true
       })
       this.userName = null
+=======
+export default {
+  methods: {
+    menCategory() {
+      console.log('men')
+    },
+    womenCategory() {
+      console.log('women')
+>>>>>>> Stashed changes
     }
   }
 }

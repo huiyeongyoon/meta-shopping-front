@@ -1,10 +1,10 @@
-import { fetchProductList } from '../../api/index.js'
+import { fetchProductLists } from '../../api/productLists.js'
 
-// 1
 const state = {
   productLists: []
 }
 
+// 정체
 const getters = {
   storedProdutList(state) {
     return state.productLists
@@ -12,12 +12,11 @@ const getters = {
 }
 
 const mutations = {
-  SET_PRODUCTLIST(state, product) {
-    state.productLists = product
+  SET_PRODUCT_LIST(state, payload) {
+    state.productLists = payload
   }
 }
 
-// 2
 const actions = {
   // FETCH_PRODUCTLIST(context) {
   //   fetchProductList()
@@ -29,10 +28,10 @@ const actions = {
   //       console.log(err)
   //     })
   // }
-  FETCH_PRODUCTLIST({ commit }) {
-    fetchProductList()
+  FETCH_PRODUCT_LIST({ commit }) {
+    fetchProductLists()
       .then(({ data }) => {
-        commit('SET_PRODUCTLIST', data)
+        commit('SET_PRODUCT_LIST', data.rows)
       })
       .catch(err => {
         console.log(err)
@@ -63,7 +62,7 @@ const actions = {
 
 export default {
   state,
-  actions,
+  getters,
   mutations,
-  getters
+  actions
 }

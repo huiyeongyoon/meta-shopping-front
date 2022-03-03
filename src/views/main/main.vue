@@ -311,6 +311,9 @@ export default {
     this.$store.dispatch('FETCH_PRODUCT_LIST')
     this.$store.dispatch('FETCH_COUNT')
   },
+  created() {
+    this.$store.dispatch('FETCH_PRODUCTLIST')
+  },
   methods: {
     // ...mapActions(['FETCH_PRODUCT_LIST']),
     allCategory() {
@@ -331,8 +334,6 @@ export default {
     accessoryCategory() {
       console.log('accessoriy')
     }
-  created() {
-    this.$store.dispatch('FETCH_PRODUCTLIST')
   }
 }
 </script>

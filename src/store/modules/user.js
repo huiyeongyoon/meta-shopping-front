@@ -72,7 +72,7 @@ export default {
 
       console.log('setUserRole :', payload)
       context.commit('setUserRole', payload)
-      console.log('setUserRole2 :', this.state.User.userRole)
+      console.log('setUserRole2 :', this.state.User.User.userRole)
       if (payload === 1) {
         context.commit('setUserGrade', '일반 구매자')
       } else {
@@ -83,7 +83,7 @@ export default {
     actUserList(context, payload) {
       /* RestAPI 호출 */
       api
-        .get('/serverApi/users', { params: payload })
+        .get('/api/users', { params: payload })
         .then(response => {
           const userList = response && response.data && response.data.rows
           context.commit('setUserList', userList)
@@ -101,7 +101,7 @@ export default {
 
       /* RestAPI 호출 */
       api
-        .post('/serverApi/users', payload)
+        .post('/api/users', payload)
         .then(response => {
           const insertedResult = response && response.data && response.data.id
           context.commit('setInsertedResult', insertedResult)
@@ -127,7 +127,7 @@ export default {
 
       /* RestAPI 호출 */
       api
-        .get(`/serverApi/users/${payload}`)
+        .get(`/api/users/${payload}`)
         .then(response => {
           const user = response && response.data
           context.commit('setUser', user)
@@ -145,7 +145,7 @@ export default {
 
       /* RestAPI 호출 */
       api
-        .put(`/serverApi/users/${payload.id}`, payload)
+        .put(`/api/users/${payload.id}`, payload)
         .then(response => {
           const updatedResult = response && response.data && response.data.updatedCount
           context.commit('setUpdatedResult', updatedResult)
@@ -163,7 +163,7 @@ export default {
 
       /* RestAPI 호출 */
       api
-        .delete(`/serverApi/users/${payload}`)
+        .delete(`/api/users/${payload}`)
         .then(response => {
           const deletedResult = response && response.data && response.data.deletedCount
           context.commit('setDeletedResult', deletedResult)

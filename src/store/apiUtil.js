@@ -6,7 +6,7 @@ const api = axios.create()
 api.interceptors.request.use(
   async request => {
     // header.token 전송
-    const token = window.localStorage.getItem('token')
+    const token = localStorage.getItem('token')
     request.headers.token = token
 
     return request
@@ -22,7 +22,7 @@ api.interceptors.response.use(
     // header.token 자동 갱신
     const token = response.headers.token // token을 header에서 받은 경우
     if (token) {
-      window.localStorage.setItem('token', token)
+      localStorage.setItem('token', token)
     }
 
     return response

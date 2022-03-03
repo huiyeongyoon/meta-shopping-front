@@ -13,17 +13,15 @@
           <b-button-group class="button">
             <b-button @click="selectRole(1)">일반 회원</b-button>
             <!--이용약관 모달 -->
-            <Inform />
+            <TermsOfUse />
+            <!--관리자 확인 모달 -->
+            <AdminPass />
             <b-button @click="selectRole(2)">관리자</b-button>
-            <b-button @click="$router.push('/signup2')">일반 구매자</b-button>
-            <b-button @click="$router.push('/signup2')">판매자</b-button>
-            <b-button @click="$router.push('/signup2')">관리자</b-button>
           </b-button-group>
         </b-col>
         <b-col></b-col>
       </b-row>
     </b-container>
-
     <br />
     <br />
     <br />
@@ -31,45 +29,28 @@
 </template>
 
 <script>
-import Inform from './inform.vue'
-
+import AdminPass from './AdminPass.vue'
+import TermsOfUse from './TermsOfUse.vue'
 export default {
-components: {
-    Inform
+  components: {
+    TermsOfUse,
+    AdminPass
   },
-  data() {
-    return {
-      userRole: {
-        options: [
-          { value: 'buyer', text: '일반 구매자' },
-          { value: 'seller', text: '판매자' },
-          { value: 'admin', text: '관리자' }
-        ]
-      }
-    }
-  },
-  computed: {
-    sendRole() {
-      return this.store.getters.UserList
-    }
-  },
-  watch: {},
   methods: {
     selectRole(params) {
-      this.$bvModal.show('signup-inform')
+      if (params === 1) {
+        this.$bvModal.show('signup-inform')
+      } else {
+        this.$bvModal.show('admin-inform')
+      }
       console.log('sign1 role: ', params)
       this.$store.dispatch('actUserRole', params)
     }
   }
-  methods: {}
 }
 </script>
 
 <style scoped>
-/* #footer {
-  position: fixed;
-  bottom: 0;
-} */
 .subject {
   text-align: center;
 }

@@ -274,6 +274,7 @@
       </div>
     </div>
     <!-- Instagram End -->
+    <!-- 왜 key에 item이 들어갈까? -->
   </div>
 </template>
 
@@ -330,6 +331,8 @@ export default {
     accessoryCategory() {
       console.log('accessoriy')
     }
+  created() {
+    this.$store.dispatch('FETCH_PRODUCTLIST')
   }
 }
 </script>

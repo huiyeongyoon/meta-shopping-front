@@ -44,9 +44,13 @@
       </div>
       <div class="col-lg-3">
         <div class="header__right">
-          <div class="header__right__auth">
-            <a href="#">Login</a>
-            <a href="/signup1">Register</a>
+          <div v-if="!userName" class="header__right__auth">
+            <a @click="userLogin">Login</a>
+            <a id="1" @click="$router.push('/signup1')">Register</a>
+          </div>
+          <div v-else-if="userName" class="header__right__auth">
+            <a>{{ userNickname }}({{ userName }})님 환영합니다.</a>
+            <a id="2" @click="userLogout">Logout</a>
           </div>
           <ul class="header__right__widget">
             <li>
@@ -71,12 +75,50 @@
     <div class="canvas__open">
       <i class="fa fa-bars"></i>
     </div>
+    <!-- 로그인 모달 -->
+    <Login />
   </header>
   <!-- Header Section End -->
 </template>
 
 <script>
-export default {}
+import Login from '../../views/login/login.vue'
+export default {
+  components: {
+    Login
+  },
+  data() {
+    return {
+      userName: localStorage.getItem('userName'),
+      userNickname: localStorage.getItem('userNickname')
+    }
+  },
+  computed: {
+    setUserInfo() {
+      return this.$store.getters.TokenUser
+    }
+  },
+  watch: {
+    setUserInfo(value) {
+      this.userName = value.userName
+      this.userNickname = value.userNickname
+    }
+  },
+  methods: {
+    userLogin() {
+      this.$bvModal.show('login-inform')
+    },
+    userLogout() {
+      this.$store.dispatch('authLogout')
+      this.$bvToast.toast('로그아웃 되었습니다.', {
+        title: '로그아웃',
+        variant: 'success',
+        solid: true
+      })
+      this.userName = null
+    }
+  }
+}
 </script>
 
 <style scoped>

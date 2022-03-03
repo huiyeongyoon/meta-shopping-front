@@ -19,10 +19,13 @@ const routes = [
   {
     path: '/productDetail',
     component: () => import('../views/product/productDetail.vue')
+<<<<<<< Updated upstream
   },
   {
     path: '*',
     component: () => import('../components/NotFound.vue')
+=======
+>>>>>>> Stashed changes
   }
 ]
 

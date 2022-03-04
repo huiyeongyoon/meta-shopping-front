@@ -6,6 +6,7 @@
         <b-col cols="8">
           <br />
           <h1 class="subject">메타 쇼핑 회원가입 페이지 입니다.</h1>
+          {{ watchIdcheck }}
           <br />
           <br />
           <b-form-group label-cols="3" label="아이디" label-for="id">
@@ -123,11 +124,36 @@ export default {
         ]
       },
       passwordcheck: null,
-      userPassword2: null,
-      idcheck: false
+      userPassword2: null
     }
   },
-  watch: {},
+  computed: {
+    //아이디 체크값
+    watchIdcheck() {
+      return this.$store.getters.IdCheck
+    }
+  },
+  watch: {
+    // 아이디 체크값 변할떄 마다 체크
+    watchIdcheck(value) {
+      console.log('aa :', this.idcheck)
+
+      if (value === 1) {
+        this.$bvToast.toast('해당 아이디는 사용가능합니다.', {
+          title: '확인되었습니다.',
+          variant: 'success',
+          solid: true
+        })
+      } else if (value === 2) {
+        this.$bvToast.toast('중복된 아이디가 있습니다.', {
+          title: '사용 불가능 합니다.',
+          variant: 'danger',
+          solid: true
+        })
+      }
+      this.$store.dispatch('actUserIdCheckReset') //아이디 체크값 리셋
+    }
+  },
   created() {
     this.$store.dispatch('actUserList')
     if (
@@ -142,16 +168,17 @@ export default {
     console.log('out sign2')
   },
   methods: {
+    // 회원가입 제출 메소드
     submit() {
       console.log('submit: ', this.user.userId)
-      // if (!this.idcheck) {
-      //   this.$bvToast.toast('아이디 중복확인을 해주세요.', {
-      //     title: 'Fail',
-      //     variant: 'danger',
-      //     solid: true
-      //   })
-      //   return 0
-      // }
+      if (this.watchIdcheck !== 1) {
+        this.$bvToast.toast('아이디 중복확인을 해주세요.', {
+          title: 'Fail',
+          variant: 'danger',
+          solid: true
+        })
+        return 0
+      }
       if (!this.passwordcheck) {
         this.$bvToast.toast('비밀번호를 확인 및 입력해주세요', {
           title: 'Fail',
@@ -228,6 +255,7 @@ export default {
       this.$store.dispatch('actUserInsert', this.user)
       localStorage.removeItem('userRole')
     },
+    // 카카오 주소 API 사용 메소드
     clickAddress() {
       const that = this
       new window.daum.Postcode({
@@ -239,24 +267,12 @@ export default {
         }
       }).open()
     },
+    // 아이디 체크 메소드
     idCheck() {
-      this.$store.dispatch('actUserIdcheck', this.user.userId)
-      if (this.$store.getters.idcheck) {
-        this.$bvToast.toast('해당 아이디는 사용가능합니다.', {
-          title: '확인되었습니다.',
-          variant: 'success',
-          solid: true
-        })
-        this.idcheck = true
-      } else {
-        this.$bvToast.toast('중복된 아이디가 있습니다.', {
-          title: '사용 불가능 합니다.',
-          variant: 'danger',
-          solid: true
-        })
-        this.idcheck = false
-      }
+      this.$store.dispatch('actUserIdCheck', this.user.userId)
+      console.log('idcheckmethod :', this.$store.getters.Idcheck)
     },
+    // 비밀번호 체크 메소드
     passwordCheck() {
       if (String(this.user.userPassword).length > 7) {
         if (this.user.userPassword === this.userPassword2) {

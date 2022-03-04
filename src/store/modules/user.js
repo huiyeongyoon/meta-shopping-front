@@ -28,7 +28,7 @@ const state = {
   UpdatedResult: null,
   DeletedResult: null,
   InputMode: null,
-  IdCheck: false
+  IdCheck: null
 }
 
 const getters = {
@@ -38,7 +38,8 @@ const getters = {
   UserUpdatedResult: state => state.UpdatedResult,
   UserDeletedResult: state => state.DeletedResult,
   UserInputMode: state => state.InputMode,
-  Idcheck: state => state.Idcheck
+  IdCheck: state => state.IdCheck,
+  test: state => state.test
 }
 
 const mutations = {
@@ -182,17 +183,23 @@ const actions = {
         context.commit('setDeletedResult', -1)
       })
   },
-  actUserIdcheck(context, payload) {
+  //아이디 체크 액션
+  actUserIdCheck(context, payload) {
     /* RestAPI 호출 */
     api
-      .post(`/api/users/idcheck`, payload)
+      .post(`/api/users/idcheck/${payload}`)
       .then(response => {
-        context.commit('setIdCheck', response)
+        context.commit('setIdCheck', response.data)
+        console.log('idcke:  ', state.IdCheck)
       })
       .catch(error => {
         // 에러인 경우 처리
         console.error('Useridcheck.error', error)
       })
+  },
+  actUserIdCheckReset(context) {
+    //아이디 체크값 리셋
+    context.commit('setIdCheck', null)
   }
 }
 

@@ -1,5 +1,5 @@
 const state = {
-  inputTime: new Date('March 04, 2022, 0:00:00').getTime(),
+  inputTime: new Date('March 07, 2022, 0:00:00').getTime(),
   days: 0,
   hours: 0,
   minutes: 0,

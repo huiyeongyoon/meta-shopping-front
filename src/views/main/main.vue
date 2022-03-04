@@ -82,26 +82,31 @@
           </div>
         </div>
         <div class="row property__gallery">
-          <div v-for="product in storedProdutList" :key="product.item" class="col-lg-3 col-md-4 col-sm-6 mix women">
+          <div
+            v-for="(product, index) in productLists"
+            :key="product.item"
+            class="col-lg-3 col-md-4 col-sm-6 mix women"
+          >
             <div class="product__item">
               <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
                 <div class="label new">New</div>
-                <img :src="`${localhostNumber}/product-1-1646291945804.jpg`" />
+                <img :src="`${localhostNumber}/${storedProdutList[index].ProductImageFiles[0].filename}`" />
                 <ul class="product__hover">
                   <li>
-                    <a href="img/product/product-1.jpg" class="image-popup"><span class="arrow_expand"></span></a>
+                    <a href="#">
+                      <span class="icon_heart_alt"><i class="fa-solid fa-cart-shopping"></i></span
+                    ></a>
                   </li>
                   <li>
-                    <a href="#"><span class="icon_heart_alt"></span></a>
-                  </li>
-                  <li>
-                    <a href="#"><span class="icon_bag_alt"></span></a>
+                    <a href="#">
+                      <span class="icon_bag_alt"><i class="fa-solid fa-heart"></i></span>
+                    </a>
                   </li>
                 </ul>
               </div>
               <div class="product__item__text">
                 <h6>
-                  <a href="#">{{ product }}</a>
+                  <a href="#">{{ product.productName }}</a>
                 </h6>
                 {{ product.productDesc }}
                 <div class="rating">
@@ -112,7 +117,6 @@
                   <i class="fa fa-star"></i>
                 </div>
                 <div class="product__price">{{ product.productPrice }}</div>
-                <div class="product__price">조회수 {{ product.productHits }}</div>
               </div>
             </div>
           </div>
@@ -159,19 +163,19 @@
               </div>
               <div id="countdown-time" class="discount__countdown">
                 <div class="countdown__item">
-                  <span>{{ getDays }}</span>
+                  <span>{{ getDate.days }}</span>
                   <p>Day</p>
                 </div>
                 <div class="countdown__item">
-                  <span>{{ getHours }}</span>
+                  <span>{{ getDate.hours }}</span>
                   <p>hour</p>
                 </div>
                 <div class="countdown__item">
-                  <span>{{ getMinutes }}</span>
+                  <span>{{ getDate.minutes }}</span>
                   <p>Min</p>
                 </div>
                 <div class="countdown__item">
-                  <span>{{ getSeconds }}</span>
+                  <span>{{ getDate.seconds }}</span>
                   <p>Sec</p>
                 </div>
               </div>
@@ -280,53 +284,99 @@
 // getter만 사용하는 이유는??
 import { mapGetters } from 'vuex'
 const { VUE_APP_SERVER } = process.env
-console.log(VUE_APP_SERVER)
 export default {
   data() {
     return {
-      localhostNumber: VUE_APP_SERVER
+      localhostNumber: VUE_APP_SERVER,
+      productLists: []
     }
   },
   computed: {
-    ...mapGetters(['storedProdutList']),
-    ...mapGetters(['storedCountdown']),
-
-    getDays() {
-      return this.storedCountdown.days
-    },
-    getHours() {
-      return this.storedCountdown.hours
-    },
-    getMinutes() {
-      return this.storedCountdown.minutes
-    },
-    getSeconds() {
-      return this.storedCountdown.seconds
+    ...mapGetters(['storedProdutList', 'storedCountdown']),
+    getDate() {
+      return this.storedCountdown
     }
   },
-  created() {
+  mounted() {
     // this.FETCH_PRODUCT_LIST()
-    this.$store.dispatch('FETCH_PRODUCT_LIST')
-    this.$store.dispatch('FETCH_COUNT')
+    this.allCategory()
+    // const that = this
+    // setTimeout(function () {
+    //   that.allCategory()
+    // }, 200)
   },
   methods: {
-    allCategory() {
-      console.log(this.storedProdutList)
+    test() {
+      const that = this
+      return new Promise(resolve => {
+        that.$store.dispatch('FETCH_PRODUCT_LIST')
+        that.$store.dispatch('FETCH_COUNT')
+        resolve('완료')
+      })
     },
+    test1() {
+      const that = this
+      return new Promise(resolve => {
+        const length = that.storedProdutList.length
+        that.productLists = []
+        for (let i = 0; i < length; i++) {
+          that.productLists.push(that.storedProdutList[i])
+        }
+        resolve('완료1')
+      })
+    },
+    async allCategory() {
+      const test = await this.test()
+      const test1 = await this.test1()
+      console.log(test)
+      console.log(test1)
+      console.log(this.productLists)
+    },
+
     menCategory() {
-      console.log('men')
+      const length = this.storedProdutList.length
+      this.productLists = []
+      for (let i = 0; i < length; i++) {
+        if (this.storedProdutList[i].categoryCode === 'MEN') {
+          this.productLists.push(this.storedProdutList[i])
+        }
+      }
     },
     womenCategory() {
-      console.log('women')
+      const length = this.storedProdutList.length
+      this.productLists = []
+      for (let i = 0; i < length; i++) {
+        if (this.storedProdutList[i].categoryCode === 'WOMEN') {
+          this.productLists.push(this.storedProdutList[i])
+        }
+      }
     },
     kidCategory() {
-      console.log('kid')
+      const length = this.storedProdutList.length
+      this.productLists = []
+      for (let i = 0; i < length; i++) {
+        if (this.storedProdutList[i].categoryCode === 'KIDS') {
+          this.productLists.push(this.storedProdutList[i])
+        }
+      }
     },
     cosmeticCategory() {
-      console.log('cosmetic')
+      const length = this.storedProdutList.length
+      this.productLists = []
+      for (let i = 0; i < length; i++) {
+        if (this.storedProdutList[i].categoryCode === 'COSMETICS') {
+          this.productLists.push(this.storedProdutList[i])
+        }
+      }
     },
     accessoryCategory() {
-      console.log('accessoriy')
+      const length = this.storedProdutList.length
+      this.productLists = []
+      for (let i = 0; i < length; i++) {
+        if (this.storedProdutList[i].categoryCode === 'ACCESSORIES') {
+          this.productLists.push(this.storedProdutList[i])
+        }
+      }
     }
   }
 }

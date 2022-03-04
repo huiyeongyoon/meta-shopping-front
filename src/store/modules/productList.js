@@ -6,6 +6,7 @@ const state = {
 
 const getters = {
   storedProdutList(state) {
+    console.log(state.productLists)
     return state.productLists
   }
 }
@@ -37,7 +38,6 @@ const actions = {
       })
   }
 }
-
 // const mutations = {
 //   addOneItem(state, todoItem) {
 //     const obj = { completed: false, item: todoItem }

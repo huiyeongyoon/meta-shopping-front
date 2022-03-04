@@ -36,7 +36,8 @@ export default {
       user: {
         userId: null,
         userPassword: null
-      }
+      },
+      meta: { header: false, noLogin: true }
     }
   },
   computed: {
@@ -94,9 +95,13 @@ export default {
   methods: {
     onSubmit() {
       this.$store.dispatch('authLogin', this.user)
+      setTimeout(() => {
+        this.$store.dispatch('actUserInfo', localStorage.getItem('id'))
+      }, 1000)
       console.log('logincheck : ', this.$store.getters.TokenUser)
-      this.user.userId = null
-      this.user.userPassword = null
+      console.log('userId', this.user)
+      // this.user.userId = null
+      // this.user.userPassword = null
     }
   }
 }

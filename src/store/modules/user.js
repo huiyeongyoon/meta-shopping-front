@@ -83,7 +83,7 @@ export default {
     actUserList(context, payload) {
       /* RestAPI 호출 */
       api
-        .get('/serverApi/users', { params: payload })
+        .get('/api/users', { params: payload })
         .then(response => {
           const userList = response && response.data && response.data.rows
           context.commit('setUserList', userList)
@@ -101,7 +101,7 @@ export default {
 
       /* RestAPI 호출 */
       api
-        .post('/serverApi/users', payload)
+        .post('/api/users', payload)
         .then(response => {
           const insertedResult = response && response.data && response.data.id
           context.commit('setInsertedResult', insertedResult)
@@ -113,7 +113,7 @@ export default {
         })
     },
     // 초기화
-    actUserInit(context, payload) {
+    actUserInit(context) {
       context.commit('setUser', { ...stateInit.User })
     },
     // 입력모드
@@ -124,12 +124,14 @@ export default {
     actUserInfo(context, payload) {
       // 상태값 초기화
       context.commit('setUser', { ...stateInit.User })
-
+      console.log('user js payload', payload)
       /* RestAPI 호출 */
       api
-        .get(`/serverApi/users/${payload}`)
+        .get(`/api/users/${payload}`)
         .then(response => {
+          localStorage.setItem('id', response.data.id) //유저 일렬번호 저장
           const user = response && response.data
+          console.log('actuser user: ', user)
           context.commit('setUser', user)
         })
         .catch(error => {
@@ -145,7 +147,7 @@ export default {
 
       /* RestAPI 호출 */
       api
-        .put(`/serverApi/users/${payload.id}`, payload)
+        .put(`/api/users/${payload.id}`, payload)
         .then(response => {
           const updatedResult = response && response.data && response.data.updatedCount
           context.commit('setUpdatedResult', updatedResult)
@@ -160,10 +162,11 @@ export default {
     actUserDelete(context, payload) {
       // 상태값 초기화
       context.commit('setDeletedResult', null)
+      console.log('actuserdelete', payload)
 
       /* RestAPI 호출 */
       api
-        .delete(`/serverApi/users/${payload}`)
+        .delete(`/api/users/${payload}`)
         .then(response => {
           const deletedResult = response && response.data && response.data.deletedCount
           context.commit('setDeletedResult', deletedResult)

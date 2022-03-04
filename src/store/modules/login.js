@@ -18,6 +18,7 @@ import jwtDecode from 'jwt-decode'
 
 const stateInit = {
   TokenUser: {
+    id: null,
     userid: null,
     userPassword: null,
     userName: null,
@@ -87,22 +88,14 @@ export default {
           const decodedToken = jwtDecode(token)
 
           // 정상인 경우 처리
+          console.log('login js payload', payload)
           context.commit('setLoading', false)
-          console.log('decodedToken ', decodedToken)
           context.commit('setTokenUser', decodedToken)
-          console.log('TokenUser ', this.getters.TokenUser)
-          localStorage.setItem('userName', this.getters.TokenUser.userName) //유저이름 로컬 저장
-          localStorage.setItem('userNickname', this.getters.TokenUser.userNickname) //유저이름 로컬 저장
-          localStorage.setItem('userRole', this.getters.TokenUser.userRole) //유저이름 로컬 저장
-          localStorage.setItem('useraddress1', this.getters.TokenUser.userAddress1) //유저주소 로컬 저장
-          localStorage.setItem('useraddress2', this.getters.TokenUser.userAddress2) //유저주소 로컬 저장
-          localStorage.setItem('useraddress3', this.getters.TokenUser.userAddress3) //유저주소 로컬 저장
         })
         .catch(error => {
           // 에러인 경우 처리
           context.commit('setLoading', false)
           context.commit('setError', error)
-          console.log('error')
         })
     },
     async authLogout(context) {
@@ -111,26 +104,16 @@ export default {
       // 상태값 초기화
       context.commit('clearError')
       context.commit('setLoading', true)
-      localStorage.removeItem('userName') // 유저정보 로컬삭제
-      localStorage.removeItem('userNickname') //유저이름 로컬 저장
-      localStorage.removeItem('userRole') //유저이름 로컬 저장
-      localStorage.removeItem('useraddress1') // 유저정보 로컬삭제
-      localStorage.removeItem('useraddress2') // 유저정보 로컬삭제
-      localStorage.removeItem('useraddress3') // 유저정보 로컬삭제
-      localStorage.removeItem('token') // 토큰 삭제
       context.commit('setLogout') // 로그아웃 처리
 
-      /* 테스트 데이터 세팅 */
-      // setTimeout(() => {
-      //   context.commit('setLogout') // 로그아웃 처리
-      //   localStorage.removeItem('token') // 토큰 삭제
-      // }, 1000) // 처리 시간을 1초로 주었다.
+      localStorage.removeItem('id') //유저 일련번호 제거
+      localStorage.removeItem('token') // 유저 토큰 제거
 
       /* RestApi 호출 */
       // api 결과와 관계없이 로컬에서는 로그아웃 처리 함
 
       try {
-        await api.delete('/api/auths/token') // await를 걸지 않으면 토큰삭제 후 전송될 수 있음
+        // await api.delete('/api/auths/token') // await를 걸지 않으면 토큰삭제 후 전송될 수 있음
       } catch (err) {
         console.log(err)
       }

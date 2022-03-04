@@ -20,7 +20,9 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   async response => {
     // header.token 자동 갱신
+    console.log('apiUtil login : ', response)
     const token = response.headers.token // token을 header에서 받은 경우
+
     if (token) {
       localStorage.setItem('token', token)
     }

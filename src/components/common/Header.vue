@@ -44,13 +44,14 @@
       </div>
       <div class="col-lg-3">
         <div class="header__right">
-          <div v-if="!userName" class="header__right__auth">
+          <div v-if="!userinfo" class="header__right__auth">
             <a @click="userLogin">Login</a>
-            <a id="1" @click="$router.push('/signup1')">Register</a>
+            <a @click="$router.push('/signup1')">Register</a>
           </div>
-          <div v-else-if="userName" class="header__right__auth">
-            <a>{{ userNickname }}({{ userName }})님 환영합니다.</a>
-            <a id="2" @click="userLogout">Logout</a>
+          <div v-else-if="userinfo" class="header__right__auth">
+            <a>{{ userinfo.userNickname }}({{ userinfo.userName }})님 환영합니다.</a>
+            <a @click="$router.push('/mypage')">my page</a>
+            <a @click="userLogout">Logout</a>
           </div>
           <ul class="header__right__widget">
             <li>
@@ -89,33 +90,35 @@ export default {
   },
   data() {
     return {
-      userName: localStorage.getItem('userName'),
-      userNickname: localStorage.getItem('userNickname')
+      id: null,
+      userinfo: null
     }
   },
   computed: {
     setUserInfo() {
-      return this.$store.getters.TokenUser
+      return this.$store.getters.User
     }
   },
   watch: {
     setUserInfo(value) {
-      this.userName = value.userName
-      this.userNickname = value.userNickname
+      this.userinfo = value
+      console.log('watch userinfo: ', value)
     }
   },
+  created() {},
   methods: {
     userLogin() {
       this.$bvModal.show('login-inform')
     },
     userLogout() {
-      this.$store.dispatch('authLogout')
       this.$bvToast.toast('로그아웃 되었습니다.', {
         title: '로그아웃',
         variant: 'success',
         solid: true
       })
-      this.userName = null
+
+      this.$store.dispatch('authLogout')
+      this.userinfo = null
     }
   }
 }

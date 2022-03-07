@@ -6,23 +6,23 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    component: () => import('../views/main')
+    component: () => import('../views/main/index.vue')
   },
   {
     path: '/signup1',
-    component: () => import('../views/signup/SignUp1.vue')
+    component: () => import('../views/signup/signUp1.vue')
   },
   {
     path: '/signup2',
-    component: () => import('../views/signup/SignUp2.vue')
+    component: () => import('../views/signup/signUp2.vue')
   },
   {
-    path: '/productDetail',
+    path: '/productdetail',
     component: () => import('../views/product/productDetail.vue')
   },
   {
     path: '*',
-    component: () => import('../components/NotFound.vue')
+    component: () => import('../components/notFound.vue')
   }
 ]
 

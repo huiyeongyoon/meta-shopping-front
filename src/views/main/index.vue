@@ -12,7 +12,7 @@
 
 <script>
 import category from './components/category.vue'
-import productList from './components/productList'
+import productList from './components/productList.vue'
 import pagination from './components/pagination.vue'
 import banner from './components/banner.vue'
 import discount from './components/discount.vue'

@@ -52,10 +52,35 @@
             <b-form-input id="email" v-model="user.userEmail"></b-form-input>
           </b-form-group>
           <b-form-group label-cols="3" label="이메일 수신동의" label-for="role">
-            <b-form-radio-group v-model="user.emailcheck" :options="emailcheck.options"></b-form-radio-group>
+            <b-form-radio-group v-model="user.emailCheck" :options="emailcheck.options"></b-form-radio-group>
           </b-form-group>
           <b-form-group label-cols="3" label="전화번호" label-for="phone">
-            <b-form-input id="phone" v-model="user.userPhone"></b-form-input>
+            <b-input-group>
+              <b-form-select
+                id="phone1"
+                v-model="user.userPhone1"
+                style="width: 100px"
+                :options="userPhone1.options"
+              ></b-form-select>
+              <p style="width: 50px; text-align: center; font-size: 40px">-</p>
+              <b-input-group-append>
+                <b-input
+                  id="phone2"
+                  v-model="user.userPhone2"
+                  style="width: 120px"
+                  maxlength="4"
+                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                ></b-input>
+                <p style="width: 50px; text-align: center; font-size: 40px">-</p>
+                <b-input
+                  id="phone3"
+                  v-model="user.userPhone3"
+                  style="width: 120px"
+                  maxlength="4"
+                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                ></b-input>
+              </b-input-group-append>
+            </b-input-group>
           </b-form-group>
           <b-form-group label-cols="3" label="주소" label-for="address">
             <b-input-group>
@@ -97,7 +122,7 @@ export default {
         userProfile: null,
         userNickname: null,
         userRole: this.$store.getters.User.userRole || localStorage.getItem('userRole'),
-        emailcheck: null,
+        emailCheck: null,
         userGrade: null,
         userAddress1: null,
         userAddress2: null,
@@ -124,7 +149,32 @@ export default {
         ]
       },
       passwordcheck: null,
-      userPassword2: null
+      userPassword2: null,
+      userPhone1: {
+        options: [
+          { value: '010', text: '010' },
+          { value: '011', text: '011' },
+          { value: '02', text: '02' },
+          { value: '031', text: '031' },
+          { value: '032', text: '032' },
+          { value: '033', text: '033' },
+          { value: '041', text: '041' },
+          { value: '042', text: '042' },
+          { value: '043', text: '043' },
+          { value: '044', text: '044' },
+          { value: '051', text: '051' },
+          { value: '052', text: '052' },
+          { value: '053', text: '053' },
+          { value: '054', text: '054' },
+          { value: '055', text: '055' },
+          { value: '061', text: '061' },
+          { value: '062', text: '062' },
+          { value: '063', text: '063' },
+          { value: '064', text: '064' }
+        ]
+      },
+      userPhone2: null,
+      userPhone3: null
     }
   },
   computed: {
@@ -136,7 +186,7 @@ export default {
   watch: {
     // 아이디 체크값 변할떄 마다 체크
     watchIdcheck(value) {
-      console.log('aa :', this.idcheck)
+      console.log('aa :', value)
 
       if (value === 1) {
         this.$bvToast.toast('해당 아이디는 사용가능합니다.', {
@@ -150,8 +200,8 @@ export default {
           variant: 'danger',
           solid: true
         })
+        this.$store.dispatch('actUserIdCheckReset') //아이디 체크값 리셋
       }
-      this.$store.dispatch('actUserIdCheckReset') //아이디 체크값 리셋
     }
   },
   created() {
@@ -170,90 +220,98 @@ export default {
   methods: {
     // 회원가입 제출 메소드
     submit() {
-      console.log('submit: ', this.user.userId)
-      if (this.watchIdcheck !== 1) {
-        this.$bvToast.toast('아이디 중복확인을 해주세요.', {
-          title: 'Fail',
-          variant: 'danger',
+      this.user.userPhone = this.userPhone1 + this.userPhone2 + this.userPhone3
+
+      setTimeout(() => {
+        if (this.watchIdcheck !== 1) {
+          this.$bvToast.toast('아이디 중복확인을 해주세요.', {
+            title: 'Fail',
+            variant: 'danger',
+            solid: true
+          })
+          return 0
+        }
+        if (!this.passwordcheck) {
+          this.$bvToast.toast('비밀번호를 확인 및 입력해주세요', {
+            title: 'Fail',
+            variant: 'danger',
+            solid: true
+          })
+          return 0
+        }
+        if (!this.user.userName) {
+          this.$bvToast.toast('이름을 입력하세요.', {
+            title: 'Fail',
+            variant: 'danger',
+            solid: true
+          })
+          return 0
+        }
+        if (!this.user.userNickname) {
+          this.$bvToast.toast('닉네임을 입력하세요.', {
+            title: 'Fail',
+            variant: 'danger',
+            solid: true
+          })
+          return 0
+        }
+        if (!this.user.usergender) {
+          this.$bvToast.toast('성별을 체크하세요.', {
+            title: 'Fail',
+            variant: 'danger',
+            solid: true
+          })
+          return 0
+        }
+        if (!this.user.userEmail) {
+          this.$bvToast.toast('이메일을 입력하세요.', {
+            title: 'Fail',
+            variant: 'danger',
+            solid: true
+          })
+          return 0
+        }
+        if (!this.user.emailCheck) {
+          this.$bvToast.toast('이메일 체크를 해주세요.', {
+            title: 'Fail',
+            variant: 'danger',
+            solid: true
+          })
+          return 0
+        }
+        if (!this.user.userPhone) {
+          this.$bvToast.toast('전화번호를 입력하세요.', {
+            title: 'Fail',
+            variant: 'danger',
+            solid: true
+          })
+          return 0
+        }
+        if (!this.user.userAddress1) {
+          this.$bvToast.toast('주소를 입력해주세요.', {
+            title: 'Fail',
+            variant: 'danger',
+            solid: true
+          })
+          return 0
+        }
+        if (!this.user.userAddress3) {
+          this.$bvToast.toast('상세주소를 입력해주세요', {
+            title: 'Fail',
+            variant: 'danger',
+            solid: true
+          })
+          return 0
+        }
+        this.$bvToast.toast('아이디가 생성되었습니다.', {
+          title: '아이디 생성',
+          variant: 'success',
           solid: true
         })
-        return 0
-      }
-      if (!this.passwordcheck) {
-        this.$bvToast.toast('비밀번호를 확인 및 입력해주세요', {
-          title: 'Fail',
-          variant: 'danger',
-          solid: true
-        })
-        return 0
-      }
-      if (!this.user.userName) {
-        this.$bvToast.toast('이름을 입력하세요.', {
-          title: 'Fail',
-          variant: 'danger',
-          solid: true
-        })
-        return 0
-      }
-      if (!this.user.userNickname) {
-        this.$bvToast.toast('닉네임을 입력하세요.', {
-          title: 'Fail',
-          variant: 'danger',
-          solid: true
-        })
-        return 0
-      }
-      if (!this.user.usergender) {
-        this.$bvToast.toast('성별을 체크하세요.', {
-          title: 'Fail',
-          variant: 'danger',
-          solid: true
-        })
-        return 0
-      }
-      if (!this.user.userEmail) {
-        this.$bvToast.toast('이메일을 입력하세요.', {
-          title: 'Fail',
-          variant: 'danger',
-          solid: true
-        })
-        return 0
-      }
-      if (!this.user.emailcheck) {
-        this.$bvToast.toast('이메일 체크를 해주세요.', {
-          title: 'Fail',
-          variant: 'danger',
-          solid: true
-        })
-        return 0
-      }
-      if (!this.user.userPhone) {
-        this.$bvToast.toast('전화번호를 입력하세요.', {
-          title: 'Fail',
-          variant: 'danger',
-          solid: true
-        })
-        return 0
-      }
-      if (!this.user.userAddress1) {
-        this.$bvToast.toast('주소를 입력해주세요.', {
-          title: 'Fail',
-          variant: 'danger',
-          solid: true
-        })
-        return 0
-      }
-      if (!this.user.userAddress3) {
-        this.$bvToast.toast('상세주소를 입력해주세요', {
-          title: 'Fail',
-          variant: 'danger',
-          solid: true
-        })
-        return 0
-      }
-      this.$router.push('/')
-      this.$store.dispatch('actUserInsert', this.user)
-      localStorage.removeItem('userRole')
+        this.$router.push('/')
+        this.$store.dispatch('actUserInsert', this.user)
+        localStorage.removeItem('userRole')
+      }, 1000)
     },
     // 카카오 주소 API 사용 메소드
     clickAddress() {

@@ -108,15 +108,28 @@ const actions = {
     // 상태값 초기화
     context.commit('setInsertedResult', null)
 
+    payload.userPhone = payload.userPhone1 + payload.userPhone2 + payload.userPhone3 //전화번호 연결
+    console.log(payload.userPhone)
+
     /* RestAPI 호출 */
     api
       .post('/api/users', payload)
       .then(response => {
+        this.$bvToast.toast('아이디가 생성되었습니다.', {
+          title: '아이디 생성',
+          variant: 'success',
+          solid: true
+        })
         const insertedResult = response && response.data && response.data.id
         context.commit('setInsertedResult', insertedResult)
       })
       .catch(error => {
         // 에러인 경우 처리
+        this.$bvToast.toast('아이디이 실패되었습니다..', {
+          title: '아이디 생성 실패',
+          variant: 'danger',
+          solid: true
+        })
         console.error('UserInsert.error', error)
         context.commit('setInsertedResult', -1)
       })

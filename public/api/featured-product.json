@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "image": "https://picsum.photos/720/960/?image=476",
+    "title": "Herschel supply co 25l",
+    "link": "",
+    "price": 75.00,
+    "badge": "new"
+  },
+  {
+    "id": 2,
+    "image": "https://picsum.photos/720/960/?image=478",
+    "title": "Denim jacket blue",
+    "link": "",
+    "price": 92.50,
+    "badge": null
+  },
+  {
+    "id": 3,
+    "image": "https://picsum.photos/720/960/?image=479",
+    "title": "Coach slim easton black",
+    "link": "",
+    "price": 165.90,
+    "badge": null
+  },
+  {
+    "id": 4,
+    "image": "https://picsum.photos/720/960/?image=480",
+    "title": "Frayed denim shorts",
+    "link": "",
+    "price": 29.50,
+    "badge": "sale"
+  },
+  {
+    "id": 5,
+    "image": "https://picsum.photos/720/960/?image=476",
+    "title": "Herschel supply co 25l",
+    "link": "",
+    "price": 75.00,
+    "badge": "new"
+  },
+  {
+    "id": 6,
+    "image": "https://picsum.photos/720/960/?image=478",
+    "title": "Denim jacket blue",
+    "link": "",
+    "price": 92.50,
+    "badge": null
+  },
+  {
+    "id": 7,
+    "image": "https://picsum.photos/720/960/?image=479",
+    "title": "Coach slim easton black",
+    "link": "",
+    "price": 165.90,
+    "badge": null
+  },
+  {
+    "id": 8,
+    "image": "https://picsum.photos/720/960/?image=480",
+    "title": "Frayed denim shorts",
+    "link": "",
+    "price": 29.50,
+    "badge": "sale"
+  }
+]

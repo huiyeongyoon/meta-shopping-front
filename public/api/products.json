@@ -1,0 +1,90 @@
+{
+  "products": [
+    {
+      "image": "https://picsum.photos/720/960/?image=476",
+      "title": "Herschel supply co 25l",
+      "link": "",
+      "price": 75.00,
+      "badge": "new"
+    },
+    {
+      "image": "https://picsum.photos/720/960/?image=478",
+      "title": "Denim jacket blue",
+      "link": "",
+      "price": 92.50,
+      "badge": null
+    },
+    {
+      "image": "https://picsum.photos/720/960/?image=479",
+      "title": "Coach slim easton black",
+      "link": "",
+      "price": 165.90,
+      "badge": null
+    },
+    {
+      "image": "https://picsum.photos/720/960/?image=480",
+      "title": "Frayed denim shorts",
+      "link": "",
+      "price": 29.50,
+      "badge": "sale"
+    },
+    {
+      "image": "https://picsum.photos/720/960/?image=476",
+      "title": "Herschel supply co 25l",
+      "link": "",
+      "price": 75.00,
+      "badge": "new"
+    },
+    {
+      "image": "https://picsum.photos/720/960/?image=478",
+      "title": "Denim jacket blue",
+      "link": "",
+      "price": 92.50,
+      "badge": null
+    },
+    {
+      "image": "https://picsum.photos/720/960/?image=479",
+      "title": "Coach slim easton black",
+      "link": "",
+      "price": 165.90,
+      "badge": null
+    },
+    {
+      "image": "https://picsum.photos/720/960/?image=480",
+      "title": "Frayed denim shorts",
+      "link": "",
+      "price": 29.50,
+      "badge": "sale"
+    },
+    {
+      "image": "https://picsum.photos/720/960/?image=476",
+      "title": "Herschel supply co 25l",
+      "link": "",
+      "price": 75.00,
+      "badge": "new"
+    },
+    {
+      "image": "https://picsum.photos/720/960/?image=478",
+      "title": "Denim jacket blue",
+      "link": "",
+      "price": 92.50,
+      "badge": null
+    },
+    {
+      "image": "https://picsum.photos/720/960/?image=479",
+      "title": "Coach slim easton black",
+      "link": "",
+      "price": 165.90,
+      "badge": null
+    },
+    {
+      "image": "https://picsum.photos/720/960/?image=480",
+      "title": "Frayed denim shorts",
+      "link": "",
+      "price": 29.50,
+      "badge": "sale"
+    }
+  ],
+  "total": 24
+}
+

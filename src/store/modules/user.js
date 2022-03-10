@@ -27,8 +27,8 @@ const state = {
   InsertedResult: null,
   UpdatedResult: null,
   DeletedResult: null,
-  InputMode: null,
-  IdCheck: null
+  IdCheck: null,
+  IdCheck2: null
 }
 
 const getters = {
@@ -37,8 +37,8 @@ const getters = {
   UserInsertedResult: state => state.InsertedResult,
   UserUpdatedResult: state => state.UpdatedResult,
   UserDeletedResult: state => state.DeletedResult,
-  UserInputMode: state => state.InputMode,
   IdCheck: state => state.IdCheck,
+  IdCheck2: state => state.IdCheck2,
   test: state => state.test
 }
 
@@ -64,11 +64,11 @@ const mutations = {
   setDeletedResult(state, data) {
     state.DeletedResult = data
   },
-  setInputMode(state, data) {
-    state.InputMode = data
-  },
   setIdCheck(state, data) {
     state.IdCheck = data
+  },
+  setIdCheck2(state, data) {
+    state.IdCheck2 = data
   }
 }
 
@@ -135,12 +135,8 @@ const actions = {
       })
   },
   // 초기화
-  actUserInit(context, payload) {
+  actUserInit(context) {
     context.commit('setUser', { ...stateInit.User })
-  },
-  // 입력모드
-  actUserInputMode(context, payload) {
-    context.commit('setInputMode', payload)
   },
   // 상세정보 조회
   actUserInfo(context, payload) {
@@ -203,6 +199,7 @@ const actions = {
       .post(`/api/users/idcheck/${payload}`)
       .then(response => {
         context.commit('setIdCheck', response.data)
+        context.commit('setIdCheck2', response.data)
         console.log('idcke:  ', state.IdCheck)
       })
       .catch(error => {
@@ -212,7 +209,7 @@ const actions = {
   },
   actUserIdCheckReset(context) {
     //아이디 체크값 리셋
-    context.commit('setIdCheck', null)
+    context.commit('setIdCheck2', null)
   }
 }
 

@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "build:sass": "sass ./src/assets/sass/style.scss:dist/css"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.0.0",
@@ -37,5 +38,18 @@
     "sass": "^1.49.9",
     "sass-loader": "^7.3.1",
     "vue-template-compiler": "^2.6.11"
-  }
+  },
+  "description": "0301 <br>\r 회원가입 디테일 추가<br>\r 다 않넣을 때 토스트 창 및 회원가입 안되게",
+  "main": ".eslintrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huiyeongyoon/meta-shopping-front.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/huiyeongyoon/meta-shopping-front/issues"
+  },
+  "homepage": "https://github.com/huiyeongyoon/meta-shopping-front#readme"
 }

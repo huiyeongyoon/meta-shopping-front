@@ -180,7 +180,7 @@ export default {
   computed: {
     //아이디 체크값
     watchIdcheck() {
-      return this.$store.getters.IdCheck
+      return this.$store.getters.IdCheck2
     }
   },
   watch: {
@@ -188,20 +188,20 @@ export default {
     watchIdcheck(value) {
       console.log('aa :', value)
 
-      if (value === 1) {
+      if (this.$store.getters.IdCheck === 1) {
         this.$bvToast.toast('해당 아이디는 사용가능합니다.', {
           title: '확인되었습니다.',
           variant: 'success',
           solid: true
         })
-      } else if (value === 2) {
+      } else if (this.$store.getters.IdCheck === 2) {
         this.$bvToast.toast('중복된 아이디가 있습니다.', {
           title: '사용 불가능 합니다.',
           variant: 'danger',
           solid: true
         })
-        this.$store.dispatch('actUserIdCheckReset') //아이디 체크값 리셋
       }
+      this.$store.dispatch('actUserIdCheckReset') //아이디 체크값 리셋
     }
   },
   created() {
@@ -303,11 +303,7 @@ export default {
           })
           return 0
         }
-        this.$bvToast.toast('아이디가 생성되었습니다.', {
-          title: '아이디 생성',
-          variant: 'success',
-          solid: true
-        })
+
         this.$router.push('/')
         this.$store.dispatch('actUserInsert', this.user)
         localStorage.removeItem('userRole')

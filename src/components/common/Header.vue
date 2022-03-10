@@ -44,13 +44,14 @@
       </div>
       <div class="col-lg-3">
         <div class="header__right">
-          <div v-if="!userName" class="header__right__auth">
+          <div v-if="!token" class="header__right__auth">
             <a @click="userLogin">Login</a>
-            <a id="1" @click="$router.push('/signup1')">Register</a>
+            <a @click="$router.push('/signup1')">Register</a>
           </div>
-          <div v-else-if="userName" class="header__right__auth">
-            <a>{{ userNickname }}({{ userName }})님 환영합니다.</a>
-            <a id="2" @click="userLogout">Logout</a>
+          <div v-else-if="token" class="header__right__auth">
+            <a>{{ userinfo.userNickname }}님 환영합니다.</a>
+            <a @click="$router.push('/mypage')">my page</a>
+            <a @click="userLogout">Logout</a>
           </div>
           <ul class="header__right__widget">
             <li>
@@ -83,14 +84,15 @@
 
 <script>
 import Login from '../../views/login/login.vue'
+import jwtDecode from 'jwt-decode'
 export default {
   components: {
     Login
   },
   data() {
     return {
-      userName: localStorage.getItem('userName'),
-      userNickname: localStorage.getItem('userNickname')
+      token: localStorage.getItem('token'), // 토큰
+      userinfo: jwtDecode(localStorage.getItem('token')) //유저정보
     }
   },
   computed: {
@@ -100,8 +102,14 @@ export default {
   },
   watch: {
     setUserInfo(value) {
-      this.userName = value.userName
-      this.userNickname = value.userNickname
+      this.userinfo = value
+      console.log('watch userinfo: ', value)
+    }
+  },
+  created() {
+    // 로컬 스토리지에 토큰 저장소가 없을시 생성
+    if (localStorage.getItem('token') === undefined) {
+      localStorage.setItem('token', null)
     }
   },
   methods: {
@@ -109,7 +117,6 @@ export default {
       this.$bvModal.show('login-inform')
     },
     userLogout() {
-      this.$store.dispatch('authLogout')
       this.$bvToast.toast('로그아웃 되었습니다.', {
         title: '로그아웃',
         variant: 'success',
@@ -122,6 +129,13 @@ export default {
     },
     womenCategory() {
       console.log('women')
+
+      this.$store.dispatch('authLogout')
+      //새로고침
+      setTimeout(() => {
+        this.$router.go(this.$router.currentRoute)
+      }, 1000)
+      this.userinfo = null
     }
   }
 }

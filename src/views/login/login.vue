@@ -36,7 +36,8 @@ export default {
       user: {
         userId: null,
         userPassword: null
-      }
+      },
+      meta: { header: false, noLogin: true }
     }
   },
   computed: {
@@ -87,14 +88,21 @@ export default {
         this.$router.push('/') // 메인 페이지 이동
       } else {
         // 토큰이 만료된 경우
-        localStorage.removeItem('token') // 토큰 삭제
+        localStorage.setItem('token', null) // 토큰 삭제
       }
     }
   },
   methods: {
     onSubmit() {
       this.$store.dispatch('authLogin', this.user)
-      console.log('logincheck : ', this.$store.getters.TokenUser)
+      console.log('logincheck : ', this.$store.getters.User)
+      console.log('userId', this.user)
+
+      //새로고침
+      setTimeout(() => {
+        this.$router.go(this.$router.currentRoute)
+      }, 1000)
+
       this.user.userId = null
       this.user.userPassword = null
     }

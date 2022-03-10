@@ -88,7 +88,6 @@ export default {
           const decodedToken = jwtDecode(token)
 
           // 정상인 경우 처리
-          console.log('login js payload', payload)
           console.log('detoken', decodedToken)
           context.commit('setLoading', false)
           context.commit('setTokenUser', decodedToken)
@@ -107,8 +106,7 @@ export default {
       context.commit('setLoading', true)
       context.commit('setLogout') // 로그아웃 처리
 
-      localStorage.removeItem('id') //유저 일련번호 제거
-      localStorage.removeItem('token') // 유저 토큰 제거
+      localStorage.setItem('token', null) // 유저 토큰 제거
 
       /* RestApi 호출 */
       // api 결과와 관계없이 로컬에서는 로그아웃 처리 함

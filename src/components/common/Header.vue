@@ -44,12 +44,12 @@
       </div>
       <div class="col-lg-3">
         <div class="header__right">
-          <div v-if="!userinfo.userId" class="header__right__auth">
+          <div v-if="!token" class="header__right__auth">
             <a @click="userLogin">Login</a>
             <a @click="$router.push('/signup1')">Register</a>
           </div>
-          <div v-else-if="userinfo.userId" class="header__right__auth">
-            <a>{{ userinfo.userNickname }}({{ userinfo.userName }})님 환영합니다.</a>
+          <div v-else-if="token" class="header__right__auth">
+            <a>{{ userinfo.userNickname }}님 환영합니다.</a>
             <a @click="$router.push('/mypage')">my page</a>
             <a @click="userLogout">Logout</a>
           </div>
@@ -84,14 +84,15 @@
 
 <script>
 import Login from '../../views/login/login.vue'
+import jwtDecode from 'jwt-decode'
 export default {
   components: {
     Login
   },
   data() {
     return {
-      id: null,
-      userinfo: null
+      token: localStorage.getItem('token'), // 토큰
+      userinfo: jwtDecode(localStorage.getItem('token')) //유저정보
     }
   },
   computed: {
@@ -105,7 +106,12 @@ export default {
       console.log('watch userinfo: ', value)
     }
   },
-  created() {},
+  created() {
+    // 로컬 스토리지에 토큰 저장소가 없을시 생성
+    if (localStorage.getItem('token') === undefined) {
+      localStorage.setItem('token', null)
+    }
+  },
   methods: {
     userLogin() {
       this.$bvModal.show('login-inform')
@@ -118,6 +124,10 @@ export default {
       })
 
       this.$store.dispatch('authLogout')
+      //새로고침
+      setTimeout(() => {
+        this.$router.go(this.$router.currentRoute)
+      }, 1000)
       this.userinfo = null
     }
   }

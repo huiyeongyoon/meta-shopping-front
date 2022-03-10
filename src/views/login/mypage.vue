@@ -17,11 +17,10 @@
 <script>
 export default {
   methods: {
-    async withdrawal() {
-      console.log(localStorage.getItem('id'))
-      this.$store.dispatch('actUserDelete', localStorage.getItem('id')) //회원 탈퇴 액션
-
-      this.$router.push('/')
+    withdrawal() {
+      console.log(this.$store.getters.TokenUser.userId)
+      this.$store.dispatch('actUserDelete', this.$store.getters.TokenUser.id) //회원 탈퇴 액션
+      this.$store.dispatch('authLogout')
     }
   }
 }

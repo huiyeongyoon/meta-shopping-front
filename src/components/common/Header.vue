@@ -44,11 +44,11 @@
       </div>
       <div class="col-lg-3">
         <div class="header__right">
-          <div v-if="!userinfo" class="header__right__auth">
+          <div v-if="!userinfo.userId" class="header__right__auth">
             <a @click="userLogin">Login</a>
             <a @click="$router.push('/signup1')">Register</a>
           </div>
-          <div v-else-if="userinfo" class="header__right__auth">
+          <div v-else-if="userinfo.userId" class="header__right__auth">
             <a>{{ userinfo.userNickname }}({{ userinfo.userName }})님 환영합니다.</a>
             <a @click="$router.push('/mypage')">my page</a>
             <a @click="userLogout">Logout</a>
@@ -96,7 +96,7 @@ export default {
   },
   computed: {
     setUserInfo() {
-      return this.$store.getters.User
+      return this.$store.getters.TokenUser
     }
   },
   watch: {

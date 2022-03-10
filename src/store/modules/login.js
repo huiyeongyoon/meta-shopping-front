@@ -89,6 +89,7 @@ export default {
 
           // 정상인 경우 처리
           console.log('login js payload', payload)
+          console.log('detoken', decodedToken)
           context.commit('setLoading', false)
           context.commit('setTokenUser', decodedToken)
         })

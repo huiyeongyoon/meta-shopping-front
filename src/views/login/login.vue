@@ -95,13 +95,10 @@ export default {
   methods: {
     onSubmit() {
       this.$store.dispatch('authLogin', this.user)
-      setTimeout(() => {
-        this.$store.dispatch('actUserInfo', localStorage.getItem('id'))
-      }, 1000)
-      console.log('logincheck : ', this.$store.getters.TokenUser)
+      console.log('logincheck : ', this.$store.getters.User)
       console.log('userId', this.user)
-      // this.user.userId = null
-      // this.user.userPassword = null
+      this.user.userId = null
+      this.user.userPassword = null
     }
   }
 }

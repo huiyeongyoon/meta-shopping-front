@@ -1,16 +1,6 @@
 <template>
   <div>
-    <b-modal
-      id="login-inform"
-      :title="title"
-      :header-bg-variant="headerBgVariant"
-      :header-text-variant="headerTextVariant"
-      :body-bg-variant="bodyBgVariant"
-      :body-text-variant="bodyTextVariant"
-      :footer-bg-variant="footerBgVariant"
-      :footer-text-variant="footerTextVariant"
-      @ok="onSubmit()"
-    >
+    <b-modal id="login-inform" :title="title" @ok="onSubmit()">
       <b-form-group label-cols="3" label="아이디" label-for="name">
         <b-form-input id="name" v-model="user.userId"></b-form-input>
       </b-form-group>
@@ -27,17 +17,10 @@ export default {
   data() {
     return {
       title: '로그인',
-      headerBgVariant: 'light',
-      headerTextVariant: 'dark',
-      bodyBgVariant: 'light',
-      bodyTextVariant: 'dark',
-      footerBgVariant: 'light',
-      footerTextVariant: 'dark',
       user: {
         userId: null,
         userPassword: null
-      },
-      meta: { header: false, noLogin: true }
+      }
     }
   },
   computed: {
@@ -95,10 +78,9 @@ export default {
   methods: {
     onSubmit() {
       this.$store.dispatch('authLogin', this.user)
-      console.log('logincheck : ', this.$store.getters.User)
       console.log('userId', this.user)
 
-      //새로고침
+      // 새로고침
       setTimeout(() => {
         this.$router.go(this.$router.currentRoute)
       }, 1000)

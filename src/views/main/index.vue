@@ -2,7 +2,7 @@
   <div>
     <category />
     <productList />
-    <pagination :total-pages="10" :per-page="10" :current-page="currentPage" @pagechanged="onPageChange" />
+    <!-- <pagination :total-pages="10" :per-page="10" :current-page="currentPage" @pagechanged="onPageChange" /> -->
     <banner />
     <discount />
     <service />
@@ -13,7 +13,7 @@
 <script>
 import category from './components/category.vue'
 import productList from './components/productList.vue'
-import pagination from './components/pagination.vue'
+//import pagination from './components/pagination.vue'
 import banner from './components/banner.vue'
 import discount from './components/discount.vue'
 import service from './components/service.vue'
@@ -23,7 +23,7 @@ export default {
   components: {
     category,
     productList,
-    pagination,
+    //pagination,
     banner,
     discount,
     service,

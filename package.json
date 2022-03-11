@@ -42,5 +42,17 @@
     "sass": "^1.49.9",
     "sass-loader": "^7.3.1",
     "vue-template-compiler": "^2.6.11"
-  }
+  },
+  "description": "설치 npm 파일 <br>\r npm install <br>\r npm install -D sass <br>\r npm install dotenv --save <br>\r npm install axios vue-axios --save <br>\r npm install jsonwebtoken --save <br>\r npm install --save @fortawesome/fontawesome-free <br>\r npm install jwt-decode <br>\r npm run build:sass",
+  "main": ".eslintrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huiyeongyoon/meta-shopping-front.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/huiyeongyoon/meta-shopping-front/issues"
+  },
+  "homepage": "https://github.com/huiyeongyoon/meta-shopping-front#readme"
 }

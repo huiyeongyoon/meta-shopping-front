@@ -1,4 +1,4 @@
-// import main from '../../views/main/index.vue'
+// import main from '../../views/main/main.vue'
 
 // console.log(main)
 // const categoryList = ['MEN', 'WOMEN', 'KIDS', 'COSMETICS', 'ACCESSORIES']

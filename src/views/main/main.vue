@@ -2,7 +2,7 @@
   <div>
     <category />
     <productList />
-    <pagination :total-pages="10" :per-page="10" :current-page="currentPage" @pagechanged="onPageChange" />
+    <!-- <pagination :total-pages="10" :per-page="10" :current-page="currentPage" @pagechanged="onPageChange" /> -->
     <banner />
     <discount />
     <service />
@@ -11,19 +11,19 @@
 </template>
 
 <script>
-import category from './components/category.vue'
-import productList from './components/productList.vue'
-import pagination from './components/pagination.vue'
-import banner from './components/banner.vue'
-import discount from './components/discount.vue'
-import service from './components/service.vue'
-import instagram from './components/instagram.vue'
+import category from '../../components/main/category.vue'
+import productList from '../../components/main/productList.vue'
+// import pagination from './components/pagination.vue'
+import banner from '../../components/main/banner.vue'
+import discount from '../../components/main/discount.vue'
+import service from '../../components/main/service.vue'
+import instagram from '../../components/main/instagram.vue'
 
 export default {
   components: {
     category,
     productList,
-    pagination,
+    // pagination,
     banner,
     discount,
     service,

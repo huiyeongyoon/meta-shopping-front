@@ -8,7 +8,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    component: () => import('../views/main/index.vue')
+    component: () => import('../views/main/main.vue')
   },
   {
     path: '/signup1',
@@ -32,7 +32,7 @@ const routes = [
   },
   {
     path: '*',
-    component: () => import('../components/notFound.vue')
+    component: () => import('../components/common/notFound.vue')
   }
 ]
 

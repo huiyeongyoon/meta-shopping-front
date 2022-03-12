@@ -10,12 +10,12 @@
         <div class="col-lg-8 col-md-8">
           <ul class="filter__controls">
             <!-- 코드 중복 해결 방법 -->
-            <li class="active" @click="getAllCategory">All</li>
-            <li @click="getWomanCategory">Women’s</li>
-            <li @click="getManCategory">Men’s</li>
-            <li @click="getKidCategory">Kid’s</li>
-            <li @click="getAccessoryCategory">Accessories</li>
-            <li @click="getCosmeticCategory">Cosmetics</li>
+            <li class="active" @click="createCategory">All</li>
+            <li @click="getCategory('WOMEN')">Women’s</li>
+            <li @click="getCategory('MEN')">Men’s</li>
+            <li @click="getCategory('KIDS')">Kid’s</li>
+            <li @click="getCategory('ACCESORIES')">Accessories</li>
+            <li @click="getCategory('COSMETICS')">Cosmetics</li>
             <!-- 코드 중복 해결 방법 -->
           </ul>
         </div>
@@ -79,7 +79,7 @@ export default {
 
     function getProductListCategoryData() {
       setTimeout(() => {
-        that.getAllCategory()
+        that.createCategory()
       }, 200)
     }
 
@@ -92,53 +92,17 @@ export default {
   },
   methods: {
     // 코드 중복 해결 방법
-    getAllCategory() {
+    createCategory() {
       this.productLists = []
       for (let i = 0; i < 8; i++) {
         this.productLists.push(this.storedProdutList[i])
       }
     },
-    getManCategory() {
+    getCategory(param) {
       const length = this.storedProdutList.length
       this.productLists = []
       for (let i = 0; i < length; i++) {
-        if (this.storedProdutList[i].categoryCode === 'MEN') {
-          this.productLists.push(this.storedProdutList[i])
-        }
-      }
-    },
-    getWomanCategory() {
-      const length = this.storedProdutList.length
-      this.productLists = []
-      for (let i = 0; i < length; i++) {
-        if (this.storedProdutList[i].categoryCode === 'WOMEN') {
-          this.productLists.push(this.storedProdutList[i])
-        }
-      }
-    },
-    getKidCategory() {
-      const length = this.storedProdutList.length
-      this.productLists = []
-      for (let i = 0; i < length; i++) {
-        if (this.storedProdutList[i].categoryCode === 'KIDS') {
-          this.productLists.push(this.storedProdutList[i])
-        }
-      }
-    },
-    getCosmeticCategory() {
-      const length = this.storedProdutList.length
-      this.productLists = []
-      for (let i = 0; i < length; i++) {
-        if (this.storedProdutList[i].categoryCode === 'COSMETICS') {
-          this.productLists.push(this.storedProdutList[i])
-        }
-      }
-    },
-    getAccessoryCategory() {
-      const length = this.storedProdutList.length
-      this.productLists = []
-      for (let i = 0; i < length; i++) {
-        if (this.storedProdutList[i].categoryCode === 'ACCESSORIES') {
+        if (this.storedProdutList[i].categoryCode === param) {
           this.productLists.push(this.storedProdutList[i])
         }
       }

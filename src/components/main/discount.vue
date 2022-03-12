@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-lg-6 p-0">
           <div class="discount__pic">
-            <img src="../../../../img/discount.jpg" alt="" />
+            <img src="../../../img/discount.jpg" alt="" />
           </div>
         </div>
         <div class="col-lg-6 p-0">

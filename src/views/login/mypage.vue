@@ -16,11 +16,17 @@
 </template>
 
 <script>
+import jwtDecode from 'jwt-decode'
 export default {
+  data() {
+    return {
+      TokenUser: jwtDecode(localStorage.getItem('token'))
+    }
+  },
   methods: {
     withdrawal() {
-      console.log(this.$store.getters.TokenUser.userId)
-      this.$store.dispatch('actUserDelete', this.$store.getters.TokenUser.id) //회원 탈퇴 액션
+      console.log('this.TokenUser.id', this.TokenUser.id)
+      this.$store.dispatch('actUserDelete', this.TokenUser.id) //회원 탈퇴 액션
       this.$store.dispatch('authLogout')
       this.$router.push('/')
     },
@@ -31,4 +37,9 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.button {
+  width: 500px;
+  height: 100px;
+}
+</style>

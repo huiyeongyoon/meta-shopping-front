@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="row property__gallery">
-        <div v-for="(product, index) in productLists" :key="product.item" class="col-lg-3 col-md-4 col-sm-6 mix women">
+        <div v-for="(product, index) in productLists" :key="product" class="col-lg-3 col-md-4 col-sm-6 mix women">
           <div class="product__item">
             <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
               <div class="label new">New</div>

@@ -122,20 +122,18 @@ export default {
         variant: 'success',
         solid: true
       })
-      this.userName = null
-    },
-    menCategory() {
-      console.log('men')
-    },
-    womenCategory() {
-      console.log('women')
-
       this.$store.dispatch('authLogout')
       //새로고침
       setTimeout(() => {
         this.$router.go(this.$router.currentRoute)
       }, 1000)
       this.userinfo = null
+    },
+    menCategory() {
+      console.log('men')
+    },
+    womenCategory() {
+      console.log('women')
     }
   }
 }

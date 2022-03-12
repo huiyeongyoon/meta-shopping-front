@@ -11,7 +11,7 @@
           <div class="discount__text">
             <div class="discount__text__title">
               <span>Discount</span>
-              <h2>Summer 2019</h2>
+              <h2>Spring 2022</h2>
               <h5><span>Sale</span> 50%</h5>
             </div>
             <div id="countdown-time" class="discount__countdown">

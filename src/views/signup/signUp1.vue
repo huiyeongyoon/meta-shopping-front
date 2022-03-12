@@ -1,8 +1,7 @@
 <template>
   <div>
     <br />
-    <h1 class="subject">메타 쇼핑 회원가입 페이지 입니다.</h1>
-    <br />
+    <h2 class="subject">메타 쇼핑 회원가입 페이지 입니다.</h2>
     <br />
     <br />
     <p class="center">가입하실 유형을 선택해 주세요</p>

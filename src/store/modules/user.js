@@ -1,35 +1,35 @@
-// import api from '../apiUtil'
+import api from '../apiUtil'
 
-// // 초기값 선언
-// const stateInit = {
-//   User: {
-//     userId: null,
-//     userPassword: null,
-//     userName: null,
-//     userPhone: null,
-//     userEmail: null,
-//     userProfile: null,
-//     userNickname: null,
-//     userRole: null,
-//     emailCheck: null,
-//     userGrade: null,
-//     userAddress1: null,
-//     userAddress2: null,
-//     userAddress3: null,
-//     updatedPwDate: null,
-//     createdAt: null
-//   }
-// }
+// 초기값 선언
+const stateInit = {
+  User: {
+    userId: null,
+    userPassword: null,
+    userName: null,
+    userPhone: null,
+    userEmail: null,
+    userProfile: null,
+    userNickname: null,
+    userRole: null,
+    emailCheck: null,
+    userGrade: null,
+    userAddress1: null,
+    userAddress2: null,
+    userAddress3: null,
+    updatedPwDate: null,
+    createdAt: null
+  }
+}
 
-// const state = {
-//   UserList: [],
-//   User: { ...stateInit.User },
-//   InsertedResult: null,
-//   UpdatedResult: null,
-//   DeletedResult: null,
-//   IdCheck: null,
-//   IdCheck2: null
-// }
+const state = {
+  UserList: [],
+  User: { ...stateInit.User },
+  InsertedResult: null,
+  UpdatedResult: null,
+  DeletedResult: null,
+  IdCheck: null,
+  IdCheck2: null
+}
 
 const getters = {
   UserList: state => state.UserList,
@@ -209,9 +209,9 @@ const actions = {
   }
 }
 
-// export default {
-//   state,
-//   getters,
-//   mutations,
-//   actions
-// }
+export default {
+  state,
+  getters,
+  mutations,
+  actions
+}

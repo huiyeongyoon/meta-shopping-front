@@ -108,7 +108,7 @@ export default {
   },
   created() {
     // 로컬 스토리지에 토큰 저장소가 없을시 생성
-    if (localStorage.getItem('token') === undefined) {
+    if (!localStorage.getItem('token')) {
       localStorage.setItem('token', null)
     }
   },

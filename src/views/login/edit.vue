@@ -34,7 +34,7 @@
           <b-form-group label-cols="3" label="이메일 수신동의" label-for="role">
             <b-form-radio-group v-model="user.emailCheck" :options="emailcheck.options"></b-form-radio-group>
           </b-form-group>
-          <!-- <b-form-group label-cols="3" label="전화번호" label-for="phone">
+          <b-form-group label-cols="3" label="전화번호" label-for="phone">
             <b-input-group>
               <b-form-select
                 id="phone1"
@@ -61,7 +61,7 @@
                 ></b-input>
               </b-input-group-append>
             </b-input-group>
-          </b-form-group> -->
+          </b-form-group>
           <b-form-group label-cols="3" label="주소" label-for="address">
             <b-input-group>
               <b-form-input id="address1" v-model="user.userAddress1" placeholder="우편번호" disabled></b-form-input>
@@ -126,8 +126,8 @@ export default {
           { value: '064', text: '064' }
         ]
       },
-      userPhone2: null,
-      userPhone3: null
+      userPhone2: this.user.userPhone.split('-')[1],
+      userPhone3: this.user.userPhone.split('-')[2]
     }
   },
   computed: {},

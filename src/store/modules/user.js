@@ -107,7 +107,7 @@ const actions = {
     // 상태값 초기화
     context.commit('setInsertedResult', null)
 
-    payload.userPhone = payload.userPhone1 + payload.userPhone2 + payload.userPhone3 //전화번호 연결
+    payload.userPhone = `${payload.userPhone1}-${payload.userPhone2}-${payload.userPhone3}` //전화번호 연결
 
     /* RestAPI 호출 */
     api

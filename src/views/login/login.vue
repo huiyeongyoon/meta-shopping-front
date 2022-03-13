@@ -84,6 +84,9 @@ export default {
       setTimeout(() => {
         this.$router.go(this.$router.currentRoute)
       }, 1000)
+      if (this.$router.path !== '/') {
+        this.$router.push('/')
+      }
 
       this.user.userId = null
       this.user.userPassword = null

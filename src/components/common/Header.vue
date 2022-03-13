@@ -44,11 +44,11 @@
       </div>
       <div class="col-lg-3">
         <div class="header__right">
-          <div v-if="!token" class="header__right__auth">
+          <div v-if="!userinfo.userNickname" class="header__right__auth">
             <a @click="userLogin">Login</a>
             <a @click="$router.push('/signup1')">Register</a>
           </div>
-          <div v-else-if="token" class="header__right__auth">
+          <div v-else-if="userinfo.userNickname" class="header__right__auth">
             <a>{{ userinfo.userNickname }}님 환영합니다.</a>
             <a @click="$router.push('/mypage')">my page</a>
             <a @click="userLogout">Logout</a>
@@ -91,25 +91,18 @@ export default {
   },
   data() {
     return {
-      token: localStorage.getItem('token'), // 토큰
-      userinfo: jwtDecode(localStorage.getItem('token')) //유저정보
-    }
-  },
-  computed: {
-    setUserInfo() {
-      return this.$store.getters.TokenUser
-    }
-  },
-  watch: {
-    setUserInfo(value) {
-      this.userinfo = value
-      console.log('watch userinfo: ', value)
+      userinfo: { userNickname: null } //유저 정보
     }
   },
   created() {
     // 로컬 스토리지에 토큰 저장소가 없을시 생성
     if (!localStorage.getItem('token')) {
       localStorage.setItem('token', null)
+    }
+    // 로컬 스토리지에 token이 null이 아닐시 토큰으로 유저정보 가져오기
+    if (!localStorage.getItem('token')) {
+      console.log('local pass')
+      this.userinfo = jwtDecode(localStorage.getItem('token')) // 유저정보 받아오기
     }
   },
   methods: {
@@ -127,6 +120,9 @@ export default {
       setTimeout(() => {
         this.$router.go(this.$router.currentRoute)
       }, 1000)
+      if (this.$router.path !== '/') {
+        this.$router.push('/')
+      }
       this.userinfo = null
     },
     menCategory() {

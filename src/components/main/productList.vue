@@ -11,21 +11,21 @@
           <ul class="filter__controls">
             <!-- 코드 중복 해결 방법 -->
             <li class="active" @click="createCategory">All</li>
-            <li @click="getCategory('WOMEN')">Women’s</li>
-            <li @click="getCategory('MEN')">Men’s</li>
-            <li @click="getCategory('KIDS')">Kid’s</li>
-            <li @click="getCategory('ACCESORIES')">Accessories</li>
-            <li @click="getCategory('COSMETICS')">Cosmetics</li>
+            <li @click="getCategory('Women')">Women’s</li>
+            <li @click="getCategory('Men')">Men’s</li>
+            <li @click="getCategory('Kids')">Kid’s</li>
+            <li @click="getCategory('Accessories')">Accessories</li>
+            <li @click="getCategory('Cosmetics')">Cosmetics</li>
             <!-- 코드 중복 해결 방법 -->
           </ul>
         </div>
       </div>
       <div class="row property__gallery">
-        <div v-for="(product, index) in productLists" :key="product" class="col-lg-3 col-md-4 col-sm-6 mix women">
+        <div v-for="(product, index) in productLists" :key="product.id" class="col-lg-3 col-md-4 col-sm-6 mix women">
           <div class="product__item">
             <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
               <div class="label new">New</div>
-              <img :src="`${localhostNumber}/${storedProdutList[index].ProductImageFiles[0].filename}`" />
+              <img :src="`${localhostNumber}/${productLists[index].ProductImageFiles[0].filename}`" />
               <ul class="product__hover">
                 <li>
                   <a href="#">
@@ -93,8 +93,9 @@ export default {
   methods: {
     // 코드 중복 해결 방법
     createCategory() {
+      const length = this.storedProdutList.length
       this.productLists = []
-      for (let i = 0; i < 8; i++) {
+      for (let i = 0; i < length; i++) {
         this.productLists.push(this.storedProdutList[i])
       }
     },
@@ -103,6 +104,7 @@ export default {
       this.productLists = []
       for (let i = 0; i < length; i++) {
         if (this.storedProdutList[i].categoryCode === param) {
+          console.log(this.storedProdutList[i])
           this.productLists.push(this.storedProdutList[i])
         }
       }

@@ -1,4 +1,4 @@
-import { fetchProductLists } from '../../api/productLists'
+import { fetchProductLists } from '../../api/main'
 
 const state = {
   productLists: []

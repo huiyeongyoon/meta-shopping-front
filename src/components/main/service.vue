@@ -2,28 +2,10 @@
   <section class="services spad">
     <div class="container">
       <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-6">
+        <div v-for="service in services" :key="service.id" class="col-lg-3 col-md-4 col-sm-6">
           <div class="services__item">
-            <h6>Free Shipping</h6>
-            <p>For all oder over $99</p>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="services__item">
-            <h6>Money Back Guarantee</h6>
-            <p>If good have Problems</p>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="services__item">
-            <h6>Online Support 24/7</h6>
-            <p>Dedicated support</p>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="services__item">
-            <h6>Payment Secure</h6>
-            <p>100% secure payment</p>
+            <h6>{{ service.subject }}</h6>
+            <p>{{ service.serviceDetail }}</p>
           </div>
         </div>
       </div>
@@ -32,7 +14,16 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      services: [
+        { id: 1, subject: 'Free Shipping', serviceDetail: 'For all oder over $99' },
+        { id: 2, subject: 'Money Back Guarantee', serviceDetail: 'If good have Problems' },
+        { id: 3, subject: 'Online Support 24/7', serviceDetail: 'Dedicated support' },
+        { id: 4, subject: 'Payment Secure', serviceDetail: '100% secure payment' }
+      ]
+    }
+  }
+}
 </script>
-
-<style></style>

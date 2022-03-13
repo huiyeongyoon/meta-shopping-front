@@ -17,38 +17,15 @@
         </div>
         <div class="col-lg-6">
           <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6 p-0">
-              <div class="categories__item set-bg-img2">
+            <div
+              v-for="productCategory in productCategories"
+              :key="productCategory.id"
+              class="col-lg-6 col-md-6 col-sm-6 p-0"
+            >
+              <div class="categories__item" :class="productCategory.image">
                 <div class="categories__text">
-                  <h4>Men’s fashion</h4>
-                  <p>358 items</p>
-                  <a href="#">Shop now</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 p-0">
-              <div class="categories__item set-bg-img3">
-                <div class="categories__text">
-                  <h4>Kid’s fashion</h4>
-                  <p>273 items</p>
-                  <a href="#">Shop now</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 p-0">
-              <div class="categories__item set-bg-img4">
-                <div class="categories__text">
-                  <h4>Cosmetics</h4>
-                  <p>159 items</p>
-                  <a href="#">Shop now</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 p-0">
-              <div class="categories__item set-bg-img5">
-                <div class="categories__text">
-                  <h4>Accessories</h4>
-                  <p>792 items</p>
+                  <h4>{{ productCategory.productCategories }}</h4>
+                  <p>{{ productCategory.productListCounts }}s</p>
                   <a href="#">Shop now</a>
                 </div>
               </div>
@@ -61,14 +38,38 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      productCategories: [
+        { id: 1, productCategory: 'Men’s fashion', productListCounts: '358 items', image: 'set-bg-img2' },
+        { id: 2, productCategory: 'Kid’s fashion', productListCounts: '273 items', image: 'set-bg-img3' },
+        { id: 3, productCategory: 'Cosmetics', productListCounts: '159 items', image: 'set-bg-img4' },
+        { id: 4, productCategory: 'Accessories', productListCounts: '792 items', image: 'set-bg-img5' }
+      ]
+    }
+  }
+}
 </script>
 
-<style></style>
-<template></template>
+<style scoped>
+.set-bg-img1 {
+  background-image: url('../../../img/categories/category-1.jpg');
+}
 
-<script>
-export default {}
-</script>
+.set-bg-img2 {
+  background-image: url('../../../img/categories/category-2.jpg');
+}
 
-<style></style>
+.set-bg-img3 {
+  background-image: url('../../../img/categories/category-3.jpg');
+}
+
+.set-bg-img4 {
+  background-image: url('../../../img/categories/category-4.jpg');
+}
+
+.set-bg-img5 {
+  background-image: url('../../../img/categories/category-5.jpg');
+}
+</style>

@@ -44,54 +44,9 @@ export default {
 </script>
 
 <style>
-.set-bg-img1 {
-  background-image: url('../../../img/categories/category-1.jpg');
-}
-
-.set-bg-img2 {
-  background-image: url('../../../img/categories/category-2.jpg');
-}
-
-.set-bg-img3 {
-  background-image: url('../../../img/categories/category-3.jpg');
-}
-
-.set-bg-img4 {
-  background-image: url('../../../img/categories/category-4.jpg');
-}
-
-.set-bg-img5 {
-  background-image: url('../../../img/categories/category-5.jpg');
-}
-
 .set-bg-img6 {
   background-image: url('../../../img/banner/banner-1.jpg');
 }
-
-.set-bg-img7 {
-  background-image: url('../../../img/instagram/insta-1.jpg');
-}
-
-.set-bg-img8 {
-  background-image: url('../../../img/instagram/insta-2.jpg');
-}
-
-.set-bg-img9 {
-  background-image: url('../../../img/instagram/insta-3.jpg');
-}
-
-.set-bg-img10 {
-  background-image: url('../../../img/instagram/insta-4.jpg');
-}
-
-.set-bg-img11 {
-  background-image: url('../../../img/instagram/insta-5.jpg');
-}
-
-.set-bg-img12 {
-  background-image: url('../../../img/instagram/insta-6.jpg');
-}
-
 /******************************************************************
   Template Name: Ashion
   Description: Ashion ecommerce template

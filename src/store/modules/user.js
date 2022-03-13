@@ -158,6 +158,10 @@ const actions = {
   actUserUpdate(context, payload) {
     // 상태값 초기화
     context.commit('setUpdatedResult', null)
+    console.log(payload.userPhone)
+    if (payload.userPhone1) {
+      payload.userPhone = `${payload.userPhone1}-${payload.userPhone2}-${payload.userPhone3}`
+    }
 
     /* RestAPI 호출 */
     api

@@ -91,7 +91,23 @@ export default {
   },
   data() {
     return {
-      userinfo: { userNickname: null } //유저 정보
+      userinfo: {
+        userId: null,
+        userPassword: null,
+        userName: null,
+        userPhone: null,
+        userEmail: null,
+        userProfile: null,
+        userNickname: null,
+        userRole: null,
+        emailCheck: null,
+        userGrade: null,
+        userAddress1: null,
+        userAddress2: null,
+        userAddress3: null,
+        updatedPwDate: null,
+        createdAt: null
+      } //유저 정보
     }
   },
   created() {
@@ -100,10 +116,12 @@ export default {
       localStorage.setItem('token', null)
     }
     // 로컬 스토리지에 token이 null이 아닐시 토큰으로 유저정보 가져오기
-    if (!localStorage.getItem('token')) {
-      console.log('local pass')
-      this.userinfo = jwtDecode(localStorage.getItem('token')) // 유저정보 받아오기
-    }
+    setTimeout(() => {
+      if (localStorage.getItem('token')) {
+        console.log('local pass')
+        this.userinfo = jwtDecode(localStorage.getItem('token')) // 유저정보 받아오기
+      }
+    }, 500)
   },
   methods: {
     userLogin() {

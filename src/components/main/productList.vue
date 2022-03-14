@@ -21,7 +21,12 @@
         </div>
       </div>
       <div class="row property__gallery">
-        <div v-for="(product, index) in productLists" :key="product.id" class="col-lg-3 col-md-4 col-sm-6 mix women">
+        <div
+          v-for="(product, index) in productLists"
+          :key="product.id"
+          class="col-lg-3 col-md-4 col-sm-6 mix women"
+          @click="detail(index)"
+        >
           <div class="product__item">
             <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
               <div class="label new">New</div>
@@ -108,9 +113,14 @@ export default {
           this.productLists.push(this.storedProdutList[i])
         }
       }
+    },
+    detail(index) {
+      this.$router.push({
+        //params를 넘겨줄때에는 push할때 path보단 name을 사용
+        name: 'productDetail',
+        params: this.productLists[index]
+      })
     }
   }
 }
 </script>
-
-<style></style>

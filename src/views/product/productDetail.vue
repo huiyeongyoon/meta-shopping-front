@@ -4,44 +4,12 @@
       <div class="row">
         <div class="col-lg-6">
           <div class="product__details__pic">
-            <div class="product__details__pic__left product__thumb nice-scroll">
-              <a class="pt active" href="#product-1">
-                <img src="../../../img/product/details/thumb-1.jpg" alt="" />
-              </a>
-              <a class="pt" href="#product-2">
-                <img src="../../../img/product/details/thumb-2.jpg" alt="" />
-              </a>
-              <a class="pt" href="#product-3">
-                <img src="../../../img/product/details/thumb-3.jpg" alt="" />
-              </a>
-              <a class="pt" href="#product-4">
-                <img src="../../../img/product/details/thumb-4.jpg" alt="" />
-              </a>
-            </div>
             <div class="product__details__slider__content">
               <div class="product__details__pic__slider owl-carousel">
                 <img
+                  :src="`${localhostNumber}/${ProductImageFiles[0].filename}`"
                   data-hash="product-1"
                   class="product__big__img"
-                  src="../../../img/product/details/product-1.jpg"
-                  alt=""
-                />
-                <img
-                  data-hash="product-2"
-                  class="product__big__img"
-                  src="../../../img/product/details/product-3.jpg"
-                  alt=""
-                />
-                <img
-                  data-hash="product-3"
-                  class="product__big__img"
-                  src="../../../img/product/details/product-2.jpg"
-                  alt=""
-                />
-                <img
-                  data-hash="product-4"
-                  class="product__big__img"
-                  src="../../../img/product/details/product-4.jpg"
                   alt=""
                 />
               </div>
@@ -50,62 +18,61 @@
         </div>
         <div class="col-lg-6">
           <div class="product__details__text">
-            <h3>Essential structured blazer <span>Brand: SKMEIMore Men Watches from SKMEI</span></h3>
-            <div class="rating">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <span>( 138 reviews )</span>
-            </div>
-            <div class="product__details__price">$ 75.0 <span>$ 83.0</span></div>
+            <h3>{{ productName }}</h3>
+            <span>( {{ productHits }} reviews )</span>
+            <div class="product__details__price">{{ productPrice }}</div>
             <p>
-              Nemo enim ipsam voluptatem quia aspernatur aut odit aut loret fugit, sed quia consequuntur magni lores eos
-              qui ratione voluptatem sequi nesciunt.
+              {{ productDesc }}
             </p>
             <div class="product__details__button">
               <div class="quantity">
                 <span>Quantity:</span>
                 <div class="pro-qty">
-                  <input type="text" value="1" />
+                  <input v-model="quantity" type="text" />
                 </div>
               </div>
-              <a href="#" class="cart-btn"><span class="icon_bag_alt"></span> Add to cart</a>
-              <ul>
-                <li>
-                  <a href="#"><span class="icon_heart_alt"></span></a>
-                </li>
-                <li>
-                  <a href="#"><span class="icon_adjust-horiz"></span></a>
-                </li>
-              </ul>
+              <button class="cart-btn" @click="orderProduct">주문하기</button>
+            </div>
+            <div class="totalAmount">
+              <span>결제금액:</span>
+              <span>{{ productPrice * quantity }}</span>
             </div>
             <div class="product__details__widget">
               <ul>
                 <li>
-                  <span>Availability:</span>
-                  <div class="stock__checkbox">
-                    <label for="stockin">
-                      In Stock
-                      <input id="stockin" type="checkbox" />
-                      <span class="checkmark"></span>
-                    </label>
-                  </div>
-                </li>
-                <li>
                   <span>Available color:</span>
                   <div class="color__checkbox">
                     <label for="red">
-                      <input id="red" type="radio" name="color__radio" checked />
+                      <input
+                        id="red"
+                        v-model="productColor"
+                        type="radio"
+                        name="color__radio"
+                        value="red"
+                        @click="selectColor('red')"
+                      />
                       <span class="checkmark"></span>
                     </label>
                     <label for="black">
-                      <input id="black" type="radio" name="color__radio" />
+                      <input
+                        id="black"
+                        v-model="productColor"
+                        type="radio"
+                        name="color__radio"
+                        value="black"
+                        @click="selectColor('black')"
+                      />
                       <span class="checkmark black-bg"></span>
                     </label>
-                    <label for="grey">
-                      <input id="grey" type="radio" name="color__radio" />
+                    <label for="brown">
+                      <input
+                        id="brown"
+                        v-model="productColor"
+                        type="radio"
+                        name="color__radio"
+                        value="brown"
+                        @click="selectColor('brown')"
+                      />
                       <span class="checkmark grey-bg"></span>
                     </label>
                   </div>
@@ -113,20 +80,20 @@
                 <li>
                   <span>Available size:</span>
                   <div class="size__btn">
-                    <label for="xs-btn" class="active">
-                      <input id="xs-btn" type="radio" />
+                    <label for="xs-btn" :class="{ active: isActive }">
+                      <input id="xs-btn" v-model="productSizes" value="xs" type="radio" @click="selectSize('xs')" />
                       xs
                     </label>
-                    <label for="s-btn">
-                      <input id="s-btn" type="radio" />
+                    <label for="s-btn" :class="{ active: isActive }">
+                      <input id="s-btn" v-model="productSizes" value="s" type="radio" @click="selectSize('s')" />
                       s
                     </label>
-                    <label for="m-btn">
-                      <input id="m-btn" type="radio" />
+                    <label for="m-btn" :class="{ active: isActive }">
+                      <input id="m-btn" v-model="productSizes" value="m" type="radio" @click="selectSize('m')" />
                       m
                     </label>
-                    <label for="l-btn">
-                      <input id="l-btn" type="radio" />
+                    <label for="l-btn" :class="{ active: isActive }">
+                      <input id="l-btn" v-model="productSizes" value="l" type="radio" @click="selectSize('l')" />
                       l
                     </label>
                   </div>
@@ -139,204 +106,60 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-12">
-          <div class="product__details__tab">
-            <ul class="nav nav-tabs" role="tablist">
-              <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Description</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Specification</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Reviews ( 2 )</a>
-              </li>
-            </ul>
-            <div class="tab-content">
-              <div id="tabs-1" class="tab-pane active" role="tabpanel">
-                <h6>Description</h6>
-                <p>
-                  Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed quia
-                  consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt loret. Neque porro lorem quisquam
-                  est, qui dolorem ipsum quia dolor si. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
-                  aut loret fugit, sed quia ipsu consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
-                  Nulla consequat massa quis enim.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean
-                  massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec
-                  quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
-                </p>
-              </div>
-              <div id="tabs-2" class="tab-pane" role="tabpanel">
-                <h6>Specification</h6>
-                <p>
-                  Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed quia
-                  consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt loret. Neque porro lorem quisquam
-                  est, qui dolorem ipsum quia dolor si. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
-                  aut loret fugit, sed quia ipsu consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
-                  Nulla consequat massa quis enim.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean
-                  massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec
-                  quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
-                </p>
-              </div>
-              <div id="tabs-3" class="tab-pane" role="tabpanel">
-                <h6>Reviews ( 2 )</h6>
-                <p>
-                  Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed quia
-                  consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt loret. Neque porro lorem quisquam
-                  est, qui dolorem ipsum quia dolor si. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
-                  aut loret fugit, sed quia ipsu consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
-                  Nulla consequat massa quis enim.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean
-                  massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec
-                  quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <div class="related__title">
-            <h5>RELATED PRODUCTS</h5>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="product__item">
-            <div class="product__item__pic set-bg" data-setbg="img/product/related/rp-1.jpg">
-              <div class="label new">New</div>
-              <ul class="product__hover">
-                <li>
-                  <a href="../../../img/product/related/rp-1.jpg" class="image-popup"
-                    ><span class="arrow_expand"></span
-                  ></a>
-                </li>
-                <li>
-                  <a href="#"><span class="icon_heart_alt"></span></a>
-                </li>
-                <li>
-                  <a href="#"><span class="icon_bag_alt"></span></a>
-                </li>
-              </ul>
-            </div>
-            <div class="product__item__text">
-              <h6><a href="#">Buttons tweed blazer</a></h6>
-              <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-              </div>
-              <div class="product__price">$ 59.0</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="product__item">
-            <div class="product__item__pic set-bg" data-setbg="img/product/related/rp-2.jpg">
-              <ul class="product__hover">
-                <li>
-                  <a href="../../../img/product/related/rp-2.jpg" class="image-popup"
-                    ><span class="arrow_expand"></span
-                  ></a>
-                </li>
-                <li>
-                  <a href="#"><span class="icon_heart_alt"></span></a>
-                </li>
-                <li>
-                  <a href="#"><span class="icon_bag_alt"></span></a>
-                </li>
-              </ul>
-            </div>
-            <div class="product__item__text">
-              <h6><a href="#">Flowy striped skirt</a></h6>
-              <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-              </div>
-              <div class="product__price">$ 49.0</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="product__item">
-            <div class="product__item__pic set-bg" data-setbg="img/product/related/rp-3.jpg">
-              <div class="label stockout">out of stock</div>
-              <ul class="product__hover">
-                <li>
-                  <a href="../../../img/product/related/rp-3.jpg" class="image-popup"
-                    ><span class="arrow_expand"></span
-                  ></a>
-                </li>
-                <li>
-                  <a href="#"><span class="icon_heart_alt"></span></a>
-                </li>
-                <li>
-                  <a href="#"><span class="icon_bag_alt"></span></a>
-                </li>
-              </ul>
-            </div>
-            <div class="product__item__text">
-              <h6><a href="#">Cotton T-Shirt</a></h6>
-              <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-              </div>
-              <div class="product__price">$ 59.0</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="product__item">
-            <div class="product__item__pic set-bg" data-setbg="img/product/related/rp-4.jpg">
-              <ul class="product__hover">
-                <li>
-                  <a href="../../../img/product/related/rp-4.jpg" class="image-popup"
-                    ><span class="arrow_expand"></span
-                  ></a>
-                </li>
-                <li>
-                  <a href="#"><span class="icon_heart_alt"></span></a>
-                </li>
-                <li>
-                  <a href="#"><span class="icon_bag_alt"></span></a>
-                </li>
-              </ul>
-            </div>
-            <div class="product__item__text">
-              <h6><a href="#">Slim striped pocket shirt</a></h6>
-              <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-              </div>
-              <div class="product__price">$ 59.0</div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-export default {}
+const { VUE_APP_SERVER } = process.env
+import axios from 'axios'
+export default {
+  data() {
+    // const index = this.$route.params.id
+    return {
+      isActive: '',
+      localhostNumber: VUE_APP_SERVER,
+      productName: this.$route.params.productName,
+      productPrice: this.$route.params.productPrice,
+      productStock: this.$route.params.productStock,
+      productDesc: this.$route.params.productDesc,
+      productHits: this.$route.params.productHits,
+      productSizes: this.$route.params.sizes,
+      productColor: this.$route.params.color,
+      ProductImageFiles: this.$route.params.ProductImageFiles,
+      quantity: 0
+    }
+  },
+  methods: {
+    orderProduct() {
+      // axios
+      //   .post('', data)
+      //   .then(res => {
+      //     this.result = res.data
+      //   })
+      //   .catch(err => {
+      //     console.log('실패', err)
+      //   })
+      // this.$router.push({
+      //   path: '/'
+      // })
+    },
+    selectColor(param) {
+      this.productColor = param
+    },
+    selectSize(param) {
+      this.productSizes = param
+    }
+  }
+}
 </script>
 
-<style></style>
+<style scoped>
+.totalAmount {
+  padding-left: -5px;
+}
+.totalAmount span {
+  font-size: 30px;
+}
+</style>

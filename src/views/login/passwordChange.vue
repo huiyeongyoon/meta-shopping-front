@@ -12,8 +12,19 @@
       @ok="checkPwd()"
     >
       <div>
-        <b-form-group label-cols="4" label="비밀번호" label-for="pwd">
-          <b-form-input id="pwd" v-model="pwd" type="password"></b-form-input>
+        <b-form-group label-cols="3" label="새 비밀번호" label-for="password">
+          <b-form-input
+            id="password"
+            v-model="newPassword"
+            type="password"
+            placeholder="8자 이상 넣으세요"
+          ></b-form-input>
+          <b-input-group>
+            <b-form-input id="password2" v-model="newPassword2" type="password"></b-form-input>
+            <b-input-group-append>
+              <b-button variant="primary" @click="passwordCheck">비밀번호 확인</b-button>
+            </b-input-group-append>
+          </b-input-group>
         </b-form-group>
       </div>
     </b-modal>
@@ -32,7 +43,9 @@ export default {
       bodyTextVariant: 'dark',
       footerBgVariant: 'info',
       footerTextVariant: 'dark',
-      pwd: null,
+      newPassword: null,
+      newPassword2: null,
+      passwordcheck: null,
       user: jwtDecode(localStorage.getItem('token'))
     }
   },
@@ -41,8 +54,29 @@ export default {
   },
   methods: {
     checkPwd() {
-      this.user.userPassword = this.pwd
-      this.$store.dispatch('actUserUpdate', this.user)
+      if (this.passwordcheck) {
+        this.user.userPassword = this.newPassword
+        this.$store.dispatch('actUserUpdate', this.user)
+      }
+    },
+    passwordCheck() {
+      if (String(this.newPassword).length > 7) {
+        if (this.newPassword === this.newPassword2) {
+          this.$bvToast.toast('비빌번호 확인 완료했습니다', {
+            title: '사용가능합니다.',
+            variant: 'success',
+            solid: true
+          })
+          this.passwordcheck = true
+          return 0
+        }
+      }
+      this.$bvToast.toast('비밀번호 확인 부탁드립니다.', {
+        title: '실패하였습니다.',
+        variant: 'danger',
+        solid: true
+      })
+      this.passwordcheck = false
     }
   }
 }

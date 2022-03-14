@@ -46,6 +46,9 @@ export default {
       this.$store.dispatch('actUserDelete', this.TokenUser.id) //회원 탈퇴 액션
       this.$store.dispatch('authLogout')
       this.$router.push('/')
+      setTimeout(() => {
+        this.$router.go('/')
+      }, 500)
     },
     changeinfo() {
       // this.$bvModal.show('pwd-inform')

@@ -147,8 +147,6 @@ export default {
           { value: 2, text: '여자' }
         ]
       },
-      passwordcheck: null,
-      userPassword2: null,
       userPhone1: {
         options: [
           { value: '010', text: '010' },
@@ -173,7 +171,9 @@ export default {
         ]
       },
       userPhone2: null,
-      userPhone3: null
+      userPhone3: null,
+      passwordcheck: null,
+      userPassword2: null
     }
   },
   computed: {
